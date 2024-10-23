@@ -1,11 +1,14 @@
 import styles from "./page.module.css";
+import React from "react";
 
-export default function Home() {
+const Home: React.FC = () => {
     return (
         <div className={styles.page}>
-            <main className={styles.main}>
-                Hallo Woss
+            <main>
+                On on Air
             </main>
         </div>
     );
 }
+
+export default Home;

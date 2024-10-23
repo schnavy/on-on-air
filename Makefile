@@ -7,9 +7,10 @@ COMPOSE_PROD_FILE=docker-compose.prod.yml
 .PHONY: help
 help:
 	@echo "Available commands:"
-	@echo "  make up           - Start development environment"
-	@echo "  make down         - Stop development environment"
+	@echo "  make start        - Start development environment"
+	@echo "  make stop         - Stop development environment"
 	@echo "  make build        - Build development images"
+	@echo "  make sh           - use docker container shell"
 	@echo "  make up-prod      - Start production environment"
 	@echo "  make down-prod    - Stop production environment"
 	@echo "  make build-prod   - Build production images"
@@ -17,32 +18,36 @@ help:
 	@echo "  make migrate-prod - Run Prisma migrations (prod)"
 
 # Development
-.PHONY: up
-up:
+.PHONY: start
+start:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up -d
 
-.PHONY: down
-down:
+.PHONY: stop
+stop:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) down
 
 .PHONY: build
 build:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) build
 
+.PHONY: sh
+sh:
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) exec app sh
+
 .PHONY: migrate
 migrate:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) exec app npx prisma migrate dev
 
 # Production
-.PHONY: up-prod
-up-prod:
+.PHONY: start-prod
+start-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) up -d
 
-.PHONY: down-prod
+.PHONY: stop-prod
 down-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) down
 
-.PHONY: build-prod
+.PHONY: stop-prod
 build-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) build
 
