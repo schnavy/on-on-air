@@ -11,12 +11,13 @@ help:
 	@echo "  make stop         - Stop development environment"
 	@echo "  make build        - Build development images"
 	@echo "  make sh           - use docker container shell"
-	@echo "  make up-prod      - Start production environment"
-	@echo "  make down-prod    - Stop production environment"
+	@echo "  make start-prod      - Start production environment"
+	@echo "  make stop-prod    - Stop production environment"
 	@echo "  make build-prod   - Build production images"
 	@echo "  make migrate      - Run Prisma migrations (dev)"
 	@echo "  make migrate-prod - Run Prisma migrations (prod)"
-
+	@echo "  make studio	   - Open Prisma Studio"
+	@echo "  make studio-stop  - Stop Prisma Studio"
 # Development
 .PHONY: start
 start:
@@ -44,13 +45,25 @@ start-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) up -d
 
 .PHONY: stop-prod
-down-prod:
+stop-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) down
 
-.PHONY: stop-prod
+.PHONY: build-prod
 build-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) build
 
 .PHONY: migrate-prod
 migrate-prod:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) exec app npx prisma migrate deploy
+
+.PHONY: studio
+studio:
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up -d prisma && open http://localhost:5555/
+
+.PHONY: studio-stop
+studio-stop:
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) stop prisma
+
+.PHONY: studio-logs
+studio-logs:
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) logs -f prisma

@@ -11,14 +11,13 @@ model Radio {
   id          Int      @id @default(autoincrement())
   slug        String
   title       String
-  content     String
+  description String
   url         String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   reviewed    Boolean  @default(false)
-  status      String
-  description String
-  actives     Boolean
+  status      String   @default("submission")
+  active      Boolean  @default(false)
   Tag         Tag[]
   Genre       Genre[]
 }
