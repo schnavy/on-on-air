@@ -1,6 +1,6 @@
 const AdminPage = () => {
     return (
-        <></>
+        <>Admin Panel</>
     );
 };
 

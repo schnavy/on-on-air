@@ -9,7 +9,7 @@ This app is using the follwing stack:
 - Prisma
 - PostgreSQL
 
-## How to run
+### How to run
 
 In Development mode:
 1. Make start
