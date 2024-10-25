@@ -7,21 +7,22 @@ COMPOSE_PROD_FILE=docker-compose.prod.yml
 .PHONY: help
 help:
 	@echo "Available commands:"
-	@echo "  make start        - Start development environment"
-	@echo "  make stop         - Stop development environment"
-	@echo "  make build        - Build development images"
-	@echo "  make sh           - use docker container shell"
+	@echo "  make start           - Start development environment"
+	@echo "  make stop            - Stop development environment"
+	@echo "  make build           - Build development images"
+	@echo "  make sh              - Use Docker container shell"
 	@echo "  make start-prod      - Start production environment"
-	@echo "  make stop-prod    - Stop production environment"
-	@echo "  make build-prod   - Build production images"
-	@echo "  make migrate      - Run Prisma migrations (dev)"
-	@echo "  make migrate-prod - Run Prisma migrations (prod)"
-	@echo "  make studio	   - Open Prisma Studio"
-	@echo "  make studio-stop  - Stop Prisma Studio"
+	@echo "  make stop-prod       - Stop production environment"
+	@echo "  make build-prod      - Build production images"
+	@echo "  make migrate         - Run Prisma migrations (dev)"
+	@echo "  make migrate-prod    - Run Prisma migrations (prod)"
+	@echo "  make studio          - Open Prisma Studio"
+	@echo "  make studio-stop     - Stop Prisma Studio"
+	@echo "  make studio-logs     - View Prisma Studio logs"
 # Development
 .PHONY: start
 start:
-	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up -d
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up -d && open http://localhost:3000/
 
 .PHONY: stop
 stop:

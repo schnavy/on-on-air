@@ -1,37 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Radio {
   id          Int      @id @default(autoincrement())
-  slug        String
   title       String
-  description String
   url         String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   reviewed    Boolean  @default(false)
+  description String
+  slug        String
   status      String   @default("submission")
   active      Boolean  @default(false)
-  Tag         Tag[]
   Genre       Genre[]
+  Tag         Tag[]
 }
 
 model Genre {
   id      Int    @id @default(autoincrement())
   title   String
-  radio   Radio  @relation(fields: [radioId], references: [id])
   radioId Int
+  radio   Radio  @relation(fields: [radioId], references: [id])
 }
 
 model Tag {
   id      Int    @id @default(autoincrement())
   title   String
-  radio   Radio  @relation(fields: [radioId], references: [id])
   radioId Int
+  radio   Radio  @relation(fields: [radioId], references: [id])
 }

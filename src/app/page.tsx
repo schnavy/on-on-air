@@ -6,6 +6,13 @@ const Home: React.FC = () => {
         <div className={styles.page}>
             <main>
                 On on Air
+                <form>
+                    <label>
+                        Name:
+                        <input type="text" name="name"/>
+                    </label>
+                    <input type="submit" value="Submit"/>
+                </form>
             </main>
         </div>
     );
