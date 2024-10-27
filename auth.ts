@@ -20,4 +20,15 @@ export const {handlers, auth, signIn, signOut} = NextAuth({
             sendVerificationRequest,
         }),
     ],
+    trustHost: true,
+    callbacks: {
+        async signIn({user}) {
+            if (!user.email) return false;
+            const existingUser = await prisma.user.findUnique({
+                where: {email: user.email},
+            });
+            
+            return !!existingUser; // return only of user exists
+        },
+    },
 })
