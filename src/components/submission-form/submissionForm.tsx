@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 interface SubmissionData {
     title: string;
@@ -9,15 +9,10 @@ interface SubmissionData {
 
 const SubmissionForm = () => {
     const [data, setData] = useState<SubmissionData>({title: "", description: "", url: ""});
-
-    useEffect(() => {
-        console.log("Form Data:", data);
-    }, [data]);
+    const [submitted, setSubmitted] = useState(false)
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
-        console.log("Submitting form data:", JSON.stringify(data));
 
         const response = await fetch("/api/add-submission", {
             method: "POST",
@@ -27,48 +22,55 @@ const SubmissionForm = () => {
             body: JSON.stringify({data}),
         });
 
-        console.log("Response:", response);
         if (response.ok) {
-            alert("Title added successfully!");
+            console.log(response)
+            setSubmitted(true);
+            setTimeout(() => {
+                setSubmitted(false);
+            }, 3000);
+
             setData({title: "", description: "", url: ""});
         } else {
             alert("Failed to add title");
         }
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Name:
-                <input
-                    type="text"
-                    name="title"
-                    value={data.title}
-                    onChange={(e) => setData({...data, title: e.target.value})}
-                />
-            </label>
-            <br/>
-            <label>
-                Description:
-                <input
-                    type="text"
-                    name="description"
-                    value={data.description}
-                    onChange={(e) => setData({...data, description: e.target.value})}
-                />
-            </label>
-            <br/>
-            <label>
-                URL:
-                <input
-                    type="text"
-                    name="url"
-                    value={data.url}
-                    onChange={(e) => setData({...data, url: e.target.value})}
-                />
-            </label>
-            <br/>
-            <input type="submit" value="Submit"/>
-        </form>
+        <>
+            {submitted ? <div>Thanks for your Submission</div> : null}
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Name:
+                    <input
+                        type="text"
+                        name="title"
+                        value={data.title}
+                        onChange={(e) => setData({...data, title: e.target.value})}
+                    />
+                </label>
+                <br/>
+                <label>
+                    Description:
+                    <input
+                        type="text"
+                        name="description"
+                        value={data.description}
+                        onChange={(e) => setData({...data, description: e.target.value})}
+                    />
+                </label>
+                <br/>
+                <label>
+                    URL:
+                    <input
+                        type="text"
+                        name="url"
+                        value={data.url}
+                        onChange={(e) => setData({...data, url: e.target.value})}
+                    />
+                </label>
+                <br/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </>
     );
 };
 

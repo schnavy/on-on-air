@@ -2,11 +2,10 @@ import styles from "./page.module.css";
 import SubmissionForm from "@/components/submission-form/submissionForm";
 
 const Home: React.FC = async () => {
+    const response = await fetch(process.env.BASE_URL + "/api/get-all-radios");
 
-    const response = await fetch("http://localhost:3000/api/get-all-radios");
     const {data} = await response.json();
-    console.log("All radios:", data);
-
+    console.log(process.env.BASE_URL);
     return (
         <div className={styles.page}>
             <main>

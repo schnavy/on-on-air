@@ -24,6 +24,11 @@ help:
 start:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up -d && open http://localhost:3000/
 
+.PHONY: start-logs
+start-logs:
+	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) up && open http://localhost:3000/
+
+
 .PHONY: stop
 stop:
 	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) down

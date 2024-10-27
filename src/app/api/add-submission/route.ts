@@ -4,7 +4,6 @@ import prisma from "../../../lib/prisma";
 export async function POST(req: NextRequest) {
     try {
         const {data} = await req.json();
-        console.log("Received submission:", data);
 
         // Validate and destructure the data
         const {title, description, url} = data;
