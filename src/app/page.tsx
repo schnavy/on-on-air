@@ -1,17 +1,21 @@
-import styles from "./page.module.css";
-import SubmissionForm from "@/components/submission-form/submissionForm";
+import styles from "./page.module.scss";
+import SubmissionForm from "../../src//components/submission-form/submissionForm";
+import {SignIn} from "@/components/auth/sign-in";
 
 const Home: React.FC = async () => {
     const response = await fetch(process.env.BASE_URL + "/api/get-all-radios");
 
     const {data} = await response.json();
-    console.log(process.env.BASE_URL);
+
     return (
         <div className={styles.page}>
             <main>
                 On on Air
+                <br/>
+                <SignIn/>
+                <br/>
                 <SubmissionForm/>
-
+                <br/>
                 <div>
                     {data.map((radio: any) => (
                         <div key={radio.id}>
