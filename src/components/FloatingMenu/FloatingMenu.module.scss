@@ -1,0 +1,26 @@
+.floatingNav {
+  font-family: system-ui;
+  position: fixed;
+  bottom: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  left: 10vw;
+  background-color: white;
+  height: var(--spacing-xl);
+  border: 1px groove var(--muted-color);
+
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-lg);
+  align-items: center;
+
+  .circle{
+    display: inline-block;
+    width: .7rem;
+    height: .7rem;
+    border-radius: 20px;
+    background-color: blue;
+    margin-left: var(--spacing-sm);
+  }
+
+}

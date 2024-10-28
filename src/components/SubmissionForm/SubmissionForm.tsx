@@ -1,5 +1,7 @@
 "use client";
 import React, {useState} from "react";
+import {VscAdd, VscClose} from "react-icons/vsc";
+import styles from "./SubmissionForm.module.scss"
 
 interface SubmissionData {
     title: string;
@@ -35,10 +37,12 @@ const SubmissionForm = () => {
         }
     };
     return (
-        <>
-            {!open ? <button onClick={() => setOpen(true)}>Add Radio</button> :
+        <div className={styles.addBottonContainer}>
+            {!open ? <button className={styles.addBotton} onClick={() => setOpen(true)}>
+                    <VscAdd/>
+                </button> :
                 (<>
-                        <button onClick={() => setOpen(false)}>Close</button>
+                        <button onClick={() => setOpen(false)}><VscClose/></button>
                         {submitted ? <div>Thanks for your Submission</div> : <p>Neues Radio hinzufügen:</p>}
                         <form onSubmit={handleSubmit}>
                             <label>
@@ -75,7 +79,7 @@ const SubmissionForm = () => {
                         </form>
                     </>
                 )}
-        </>
+        </div>
     )
 };
 

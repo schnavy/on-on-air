@@ -1,0 +1,22 @@
+.addBottonContainer {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  right: 10vw;
+  background-color: #BBFF46;
+  border: 1px groove var(--muted-color);
+
+
+  .addBotton {
+    appearance: none;
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+    border: none;
+    background-color: #BBFF46;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

@@ -91,7 +91,7 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
 
     return (
         <div className={styles.radioTableContainer}>
-            <table className={styles.mainRadioTable + " " + (loading ? styles.loading : styles.loaded)}>
+            <table className={styles.mainRadioTable + " " + (loading ? "loading" : "loaded")}>
                 <thead>
                 <tr>
                     <th className={`clickable ${styles.title}`} onClick={() => handleSort("title")}>
