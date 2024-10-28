@@ -2,39 +2,53 @@
 
 import {useEffect, useState} from 'react';
 import styles from './FloatingMenu.module.scss';
+import Link from "next/link";
+import {VscClose} from "react-icons/vsc";
 
 const FloatingMenu = () => {
-    // Generate a random left position between 0 and 50vw
-    const [leftPosition, setLeftPosition] = useState('10vw'); // Initial default position
+    const [leftPosition, setLeftPosition] = useState('10vw');
     const [loading, setLoading] = useState(true);
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
-        const randomLeft = Math.floor(Math.random() * 50); // Generate a random value between 0 and 50
+        const randomLeft = Math.floor(Math.random() * 30);
         setLeftPosition(`${randomLeft}vw`);
         setLoading(false);
     }, []);
+
+    const handleClearSearch = () => {
+        setSearchText('');
+    };
 
     return (
         <nav className={styles.floatingNav + " " + (loading ? "loading" : "loaded")}
              style={{left: leftPosition}}>
             <div>
-                <a href="" className={styles.link}>
+                <Link href="/" className={styles.link}>
                     On on Air<span className={styles.circle}></span>
-                </a>
+                </Link>
             </div>
             <div>
-                <a href="" className={styles.link}>
+                <Link href="/" className={styles.link}>
                     Index
-                </a>
+                </Link>
             </div>
             <div>
-                <a href="" className={styles.link}>
+                <Link href="/about" className={styles.link}>
                     About
-                </a>
+                </Link>
             </div>
-            <div>
-                <input type={"search"} className={styles.search} placeholder={"Search"}>
-                </input>
+            <div className={styles.searchContainer}>
+                <input
+                    type="search"
+                    className={styles.search}
+                    placeholder="Search"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                />
+                {searchText && (
+                    <VscClose className={styles.clearIcon} onClick={handleClearSearch}/>
+                )}
             </div>
         </nav>
     );

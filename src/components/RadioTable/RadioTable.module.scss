@@ -22,9 +22,10 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-          gap: var(--gap-small);
+          gap: var(--spacing-xs);
 
           .genreItem, .tagItem {
+            font-size: .875rem;
             padding: var(--padding-item);
             background-color: rgba(var(--tagBGColor), 0.3); /* 50% opacity */
             transition: background-color 0.1s ease;
