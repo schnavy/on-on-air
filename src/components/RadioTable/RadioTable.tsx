@@ -4,8 +4,16 @@ import {Genre, Radio, Tag} from "@prisma/client";
 import styles from "./RadioTable.module.scss";
 
 interface RadioWithRelations extends Radio {
-    genres: Genre[];
-    tags: Tag[];
+    genres: GenreWithColor[];
+    tags: TagWithColor[];
+}
+
+interface GenreWithColor extends Genre {
+    color: string;
+}
+
+interface TagWithColor extends Tag {
+    color: string;
 }
 
 type SortField = "title" | "location";
@@ -82,58 +90,95 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
     const renderArrow = (field: SortField) => (sortField === field ? (sortOrder === "asc" ? "↑" : "↓") : "");
 
     return (
-        <table className={styles.mainRadioTable + " " + (loading ? styles.loading : styles.loaded)}>
-            <thead>
-            <tr>
-                <th className={`clickable ${styles.title}`} onClick={() => handleSort("title")}>
-                    Name {renderArrow("title")}
-                </th>
-                <th className={`clickable ${styles.location}`} onClick={() => handleSort("location")}>
-                    Location {renderArrow("location")}
-                </th>
-                <th className={styles.genres}>Genres</th>
-                <th className={styles.tags}>Tags</th>
-                <th className={styles.actions}></th>
-            </tr>
-            </thead>
-            <tbody>
-            {radiosState.map((radio) => (
-                <tr key={radio.id}>
-                    <td className={styles.title}>
-                        {editable ? (
-                            <input
-                                type="text"
-                                value={radio.title}
-                                onChange={(e) => handleEdit(radio.id, "title", e.target.value)}
-                            />
-                        ) : (
-                            radio.title
-                        )}
-                    </td>
-                    <td className={styles.location}>
-                        {editable ? (
-                            <input
-                                type="text"
-                                value={radio.location}
-                                onChange={(e) => handleEdit(radio.id, "location", e.target.value)}
-                            />
-                        ) : (
-                            radio.location
-                        )}
-                    </td>
-                    <td className={styles.genres}>{radio.genres.map((genre) => genre.title).join(", ")}</td>
-                    <td className={styles.tags}>{radio.tags.map((tag) => tag.title).join(", ")}</td>
-                    <td>
-                        {editable && editedRadios.includes(radio.id) ? (
-                                <button onClick={() => saveChanges(radio.id)}>Save</button>
-                            ) :
-                            <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
-                        }
-                    </td>
+        <div className={styles.radioTableContainer}>
+            <table className={styles.mainRadioTable + " " + (loading ? styles.loading : styles.loaded)}>
+                <thead>
+                <tr>
+                    <th className={`clickable ${styles.title}`} onClick={() => handleSort("title")}>
+                        Name {renderArrow("title")}
+                    </th>
+                    <th className={`clickable ${styles.location}`} onClick={() => handleSort("location")}>
+                        Location {renderArrow("location")}
+                    </th>
+                    <th className={styles.genres}>Genres</th>
+                    <th className={styles.tags}>Tags</th>
+                    <th className={styles.actions}></th>
                 </tr>
-            ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {radiosState.map((radio) => (
+                    <tr key={radio.id}>
+                        <td className={styles.title}>
+                            {editable ? (
+                                <input
+                                    type="text"
+                                    value={radio.title}
+                                    onChange={(e) => handleEdit(radio.id, "title", e.target.value)}
+                                />
+                            ) : (
+                                radio.title
+                            )}
+                        </td>
+                        <td className={styles.location}>
+                            {editable ? (
+                                <input
+                                    type="text"
+                                    value={radio.location}
+                                    onChange={(e) => handleEdit(radio.id, "location", e.target.value)}
+                                />
+                            ) : (
+                                radio.location
+                            )}
+                        </td>
+                        <td className={styles.genres}>
+                            <div>
+                                {radio.genres.map((genre) => {
+                                    return (
+                                        <span
+                                            key={genre.id}
+                                            id={genre.id.toString()}
+                                            className={styles.genreItem}
+                                            style={{
+                                                // @ts-ignore
+                                                "--tagBGColor": `${genre.color}`,
+                                            }}
+                                        >{genre.title}</span>
+                                    )
+                                })}
+                            </div>
+                        </td>
+                        <td className={styles.tags}>
+                            <div>
+                                {radio.tags.map((tag) => {
+                                    return (
+                                        <span
+                                            key={tag.id}
+                                            id={tag.id.toString()}
+                                            className={styles.tagItem}
+                                            style={{
+                                                // @ts-ignore
+                                                "--tagBGColor": `${tag.color}`,
+                                            }}
+                                        >
+                                        {tag.title}</span>
+                                    )
+                                })
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            {editable && editedRadios.includes(radio.id) ? (
+                                    <button onClick={() => saveChanges(radio.id)}>Save
+                                    </button>
+                                ) :
+                                <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
+                            }
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

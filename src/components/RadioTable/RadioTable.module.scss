@@ -1,21 +1,70 @@
-.mainRadioTable {
-  width: 100%;
+.radioTableContainer {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
 
-  thead {
-    text-align: left;
-  }
+  .mainRadioTable {
+    width: 100%;
+    border-collapse: collapse;
 
-  @media (max-width: 1024px) {
-    thead, tbody {
-      .genres {
-        display: none;
+    thead {
+      th {
+        text-align: left;
+        font-weight: normal;
+        opacity: 0.5;
       }
     }
-  }
-  @media (max-width: 768px) {
-    thead, tbody {
-      .tags {
-        display: none;
+
+    tbody {
+      .genres, .tags {
+        div {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 0.2rem;
+
+          .genreItem, .tagItem {
+            padding: 0.1rem .3rem;
+            background-color: rgba(var(--tagBGColor), 0.3); /* 50% opacity */
+            transition: background-color 0.1s ease;
+            cursor: pointer;
+
+            &:hover {
+              color: white;
+              background-color: rgba(var(--tagBGColor), 1); /* 100% opacity on hover */
+            }
+          }
+        }
+      }
+    }
+
+    th {
+      padding: 0.5rem .8rem;
+    }
+
+    /* Only apply border-bottom to each row except the last one */
+    thead tr, tbody tr:not(:last-child) {
+      border-bottom: 1px solid lightgrey;
+    }
+
+    td {
+      vertical-align: top;
+      min-height: 3rem;
+      padding: 0.5rem .7rem;
+    }
+
+    @media (max-width: 1024px) {
+      thead, tbody {
+        .genres {
+          display: none;
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      thead, tbody {
+        .tags {
+          display: none;
+        }
       }
     }
   }
