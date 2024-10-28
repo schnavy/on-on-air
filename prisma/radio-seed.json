@@ -1,0 +1,182 @@
+[
+  {
+    "title": "THF Radio",
+    "url": "https://www.thfradio.de/de",
+    "description": "A community radio from Berlin, Germany",
+    "slug": "thf-radio",
+    "genres": ["Experimental", "Electronic", "Underground"],
+    "tags": ["Community Radio", "DJ Sets", "Berlin Scene"],
+    "location": "Berlin, Germany"
+  },
+  {
+    "title": "Kiosk Radio",
+    "url": "https://kioskradio.com/",
+    "description": "An independent outdoor radio in Brussels, Belgium",
+    "slug": "kiosk-radio",
+    "genres": ["Electronic", "Ambient", "Experimental"],
+    "tags": ["Outdoor Radio", "Independent", "Live Sessions"],
+    "location": "Brussels, Belgium"
+  },
+  {
+    "title": "Radio Angrezi",
+    "url": "https://radioangrezi.de/",
+    "description": "A cultural radio focused on diversity from Bremen, Germany",
+    "slug": "radio-angrezi",
+    "genres": ["World Music", "Hip-Hop", "Experimental"],
+    "tags": ["Cultural Diversity", "Community", "International"],
+    "location": "Bremen, Germany"
+  },
+  {
+    "title": "Hallo Radio",
+    "url": "https://www.halloradio.net/",
+    "description": "A DIY alternative radio from Hamburg, Germany",
+    "slug": "hallo-radio",
+    "genres": ["Indie", "Punk", "Experimental"],
+    "tags": ["DIY", "Alternative", "Underground Music"],
+    "location": "Hamburg, Germany"
+  },
+  {
+    "title": "Radio 80000",
+    "url": "https://www.radio80k.de/",
+    "description": "A community radio representing the Munich scene",
+    "slug": "radio-80000",
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "tags": ["Community Radio", "Munich Scene", "Underground"],
+    "location": "Munich, Germany"
+  },
+  {
+    "title": "NTS Radio",
+    "url": "https://www.nts.live/",
+    "description": "A global radio broadcasting from London, UK",
+    "slug": "nts-radio",
+    "genres": ["Electronic", "Jazz", "Experimental", "Global Music"],
+    "tags": ["Eclectic", "Independent", "Global Reach"],
+    "location": "London, UK"
+  },
+  {
+    "title": "Sphere Radio",
+    "url": "https://sphere-radio.net/",
+    "description": "An eclectic community radio from Leipzig, Germany",
+    "slug": "sphere-radio",
+    "genres": ["Experimental", "Ambient", "Electronic"],
+    "tags": ["Community Radio", "Independent", "Eclectic"],
+    "location": "Leipzig, Germany"
+  },
+  {
+    "title": "Radio Corax",
+    "url": "https://radiocorax.de/",
+    "description": "A non-profit radio with cultural programming from Halle, Germany",
+    "slug": "radio-corax",
+    "genres": ["Talk", "Experimental", "Jazz", "Electronic"],
+    "tags": ["Community Radio", "Cultural Programming", "Non-profit"],
+    "location": "Halle, Germany"
+  },
+  {
+    "title": "Cashmere Radio",
+    "url": "https://cashmereradio.com/about/",
+    "description": "An avant-garde cultural radio from Berlin Lichtenberg",
+    "slug": "cashmere-radio",
+    "genres": ["Sound Art", "Experimental", "Ambient", "Electronic"],
+    "tags": ["Avant-garde", "Cultural", "Sound Exploration"],
+    "location": "Berlin Lichtenberg, Germany"
+  },
+  {
+    "title": "EOS Radio",
+    "url": "https://www.eosradio.de/",
+    "description": "An underground electronic radio from Frankfurt, Germany",
+    "slug": "eos-radio",
+    "genres": ["Electronic", "Techno", "House", "Experimental"],
+    "tags": ["Frankfurt Scene", "Underground", "DJ Sets"],
+    "location": "Frankfurt, Germany"
+  },
+  {
+    "title": "Radio Grenouille",
+    "url": "https://www.radiogrenouille.com/",
+    "description": "A community art radio from Marseille, France",
+    "slug": "radio-grenouille",
+    "genres": ["World Music", "Jazz", "Experimental", "Electronic"],
+    "tags": ["Cultural Programming", "Art Radio", "Community"],
+    "location": "Marseille, France"
+  },
+  {
+    "title": "Radio AlHara",
+    "url": "https://yamakan.place/palestine/",
+    "description": "A cultural exchange radio from Bethlehem, Palestine",
+    "slug": "radio-alhara",
+    "genres": ["Experimental", "Electronic", "Global Music"],
+    "tags": ["Middle Eastern Scene", "Global Sound", "Cultural Exchange"],
+    "location": "Bethlehem, Palestine"
+  },
+  {
+    "title": "DubLab",
+    "url": "https://www.dublab.com/",
+    "description": "A nonprofit radio for innovative sounds in Los Angeles, US",
+    "slug": "dublab",
+    "genres": ["Ambient", "Experimental", "World Music", "Electronic"],
+    "tags": ["Nonprofit", "Eclectic", "Innovative Sounds"],
+    "location": "Los Angeles, US"
+  },
+  {
+    "title": "The Lot Radio",
+    "url": "https://www.thelotradio.com/",
+    "description": "An independent radio from Brooklyn, NYC, US",
+    "slug": "the-lot-radio",
+    "genres": ["Electronic", "House", "Techno", "Experimental"],
+    "tags": ["Brooklyn Scene", "Independent", "Live Sets"],
+    "location": "Brooklyn, NYC, US"
+  },
+  {
+    "title": "Resonance Extra",
+    "url": "https://extra.resonance.fm",
+    "description": "An avant-garde art radio from London, UK",
+    "slug": "resonance-extra",
+    "genres": ["Experimental", "Sound Art", "Ambient"],
+    "tags": ["Avant-garde", "Cultural", "Sound Art"],
+    "location": "London, UK"
+  },
+  {
+    "title": "Noods Radio",
+    "url": "https://www.noodsradio.com/",
+    "description": "An underground DJ radio from Bristol, UK",
+    "slug": "noods-radio",
+    "genres": ["Electronic", "Bass Music", "Experimental", "Global Music"],
+    "tags": ["Bristol Scene", "Underground", "DJ Collectives"],
+    "location": "Bristol, UK"
+  },
+  {
+    "title": "Radio Quantica",
+    "url": "https://www.radioquantica.com/",
+    "description": "An avant-garde radio representing the Lisbon scene",
+    "slug": "radio-quantica",
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "tags": ["Lisbon Scene", "Avant-garde", "Underground"],
+    "location": "Lisbon, Portugal"
+  },
+  {
+    "title": "Radio Relativa",
+    "url": "https://radiorelativa.eu/",
+    "description": "An independent eclectic radio from Madrid, Spain",
+    "slug": "radio-relativa",
+    "genres": ["Experimental", "Electronic", "Indie"],
+    "tags": ["Madrid Scene", "Independent", "Eclectic Programming"],
+    "location": "Madrid, Spain"
+  },
+  {
+    "title": "Ja Ja Ja Nee Nee Nee",
+    "url": "https://www.jajajaneeneenee.com/",
+    "description": "An experimental art radio from Amsterdam, Netherlands",
+    "slug": "ja-ja-ja-nee-nee-nee",
+    "genres": ["Sound Art", "Experimental", "Spoken Word"],
+    "tags": ["Art Radio", "Contemporary Art", "Sound Experiments"],
+    "location": "Amsterdam, Netherlands"
+  },
+  {
+    "title": "Radio Papesse",
+    "url": "https://www.radiopapesse.org/",
+    "description": "A nonprofit art radio from Florence, Italy",
+    "slug": "radio-papesse",
+    "genres": ["Sound Art", "Experimental", "Field Recordings"],
+    "tags": ["Art Radio", "Cultural Projects", "Nonprofit"],
+    "location": "Florence, Italy"
+  }
+]

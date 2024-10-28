@@ -1,7 +1,9 @@
 import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
-    sassOptions: {},
+    sassOptions: {
+        silenceDeprecations: ['legacy-js-api'],
+    },
     eslint: {
         ignoreDuringBuilds: true,
     },

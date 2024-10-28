@@ -2,6 +2,7 @@ import styles from "./page.module.scss";
 import {SignOut} from "@/components/auth/sign-out";
 import {auth} from "../../../auth";
 import {redirect} from "next/navigation";
+import RadioTable from "@/components/RadioTable/RadioTable";
 
 const AdminPanel: React.FC = async () => {
     const session = await auth();
@@ -15,8 +16,8 @@ const AdminPanel: React.FC = async () => {
         return null; // Don't render anything if there's no session (redirect will handle it)
     }
 
-    const response = await fetch(process.env.BASE_URL + "/api/get-all-radios");
-    const {data} = await response.json();
+    const radiosResponse = await fetch(process.env.BASE_URL + "/api/get-radios-with-relations");
+    const {data: radios} = await radiosResponse.json();
 
     return (
         <div className={styles.page}>
@@ -25,15 +26,8 @@ const AdminPanel: React.FC = async () => {
                 <p>Welcome {session.user.email}</p>
                 <SignOut/>
                 <br/>
-                <div>
-                    {data.map((radio: any) => (
-                        <div key={radio.id}>
-                            <h2>{radio.title}</h2>
-                            <p>{radio.description}</p>
-                            <a href={radio.url}>{radio.url}</a>
-                        </div>
-                    ))}
-                </div>
+                <RadioTable radios={radios} editable={true}/>
+
             </main>
         </div>
     );

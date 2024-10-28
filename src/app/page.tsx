@@ -1,33 +1,23 @@
-import styles from "./page.module.scss";
-import SubmissionForm from "../../src//components/submission-form/submissionForm";
-import {SignIn} from "@/components/auth/sign-in";
+import SubmissionForm from "../../src/components/submission-form/submissionForm";
+import React from "react";
+import RadioTable from "@/components/RadioTable/RadioTable";
 
 const Home: React.FC = async () => {
-    const response = await fetch(process.env.BASE_URL + "/api/get-all-radios");
-
-    const {data} = await response.json();
+    const radiosResponse = await fetch(process.env.BASE_URL + "/api/get-radios-with-relations");
+    const {data: radios} = await radiosResponse.json();
 
     return (
-        <div className={styles.page}>
+        <div>
             <main>
-                On on Air
-                <br/>
-                <SignIn/>
+                <div>
+                    <RadioTable radios={radios}/>
+                </div>
                 <br/>
                 <SubmissionForm/>
                 <br/>
-                <div>
-                    {data.map((radio: any) => (
-                        <div key={radio.id}>
-                            <h2>{radio.title}</h2>
-                            <p>{radio.description}</p>
-                            <a href={radio.url}>{radio.url}</a>
-                        </div>
-                    ))}
-                </div>
             </main>
         </div>
     );
-}
+};
 
 export default Home;

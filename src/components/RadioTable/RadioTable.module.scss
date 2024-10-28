@@ -1,0 +1,26 @@
+.mainRadioTable {
+  width: 100%;
+
+  thead {
+    text-align: left;
+  }
+
+  @media (max-width: 1024px) {
+    thead, tbody {
+      .genres {
+        display: none;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    thead, tbody {
+      .tags {
+        display: none;
+      }
+    }
+  }
+}
+
+.loading {
+  visibility: hidden;
+}
