@@ -8,6 +8,7 @@
   border: 1px groove var(--muted-color);
   color: black;
   transition: opacity 200ms ease;
+  margin-right: var(--spacing-lg);
 
   .addButton {
     appearance: none;
@@ -30,5 +31,9 @@
   .open {
     padding: var(--spacing-sm);
     background-color: rgba(187, 255, 70, 1);
+  }
+
+  @media (max-width: 900px) {
+    right: 0 !important;
   }
 }

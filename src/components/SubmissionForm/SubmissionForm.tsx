@@ -18,7 +18,7 @@ const SubmissionForm = () => {
 
     useEffect(() => {
         // Generate a random value between 0 and 50 for the right position
-        const randomRight = Math.floor(Math.random() * 50);
+        const randomRight = Math.floor(Math.random() * 30);
         setRightPosition(`${randomRight}vw`);
         setLoading(false);
     }, []); // Re-run when the form is opened

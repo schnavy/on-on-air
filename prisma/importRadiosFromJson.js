@@ -7,10 +7,30 @@ const prisma = new PrismaClient();
 async function main() {
     // Load the radios JSON data
     const radiosData = JSON.parse(
-        fs.readFileSync(path.join(__dirname, './radio-seed.json'), 'utf8')
+        fs.readFileSync(path.join(__dirname, './radio-seed2.json'), 'utf8')
     );
 
     for (const radioData of radiosData) {
+        // Convert title and URL to lowercase to ensure case-insensitive matching
+        const lowerTitle = radioData.title.toLowerCase();
+        const lowerUrl = radioData.url.toLowerCase();
+
+        // Check for an existing radio with the same title or URL (case-insensitive)
+        const existingRadio = await prisma.radio.findFirst({
+            where: {
+                OR: [
+                    { title: { equals: lowerTitle, mode: 'insensitive' } },
+                    { url: { equals: lowerUrl, mode: 'insensitive' } }
+                ],
+            },
+        });
+
+        // Skip creation if a duplicate is found
+        if (existingRadio) {
+            console.log(`Duplicate found, skipping: ${radioData.title}`);
+            continue;
+        }
+
         // Handle genres for the radio
         const genreConnections = await Promise.all(
             radioData.genres.map(async (genreTitle) => {

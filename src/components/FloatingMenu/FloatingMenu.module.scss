@@ -3,7 +3,8 @@
   position: fixed;
   bottom: var(--spacing-xl);
   border-radius: var(--border-radius);
-  left: 10vw;
+  left: 0;
+  margin-left: var(--spacing-lg);
   background-color: var(--background-light);
   color: var(--foreground);
   height: var(--spacing-xl);
@@ -68,5 +69,9 @@
 
   .clearIcon {
     cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    left: 0 !important;
   }
 }

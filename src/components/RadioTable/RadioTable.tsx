@@ -16,7 +16,7 @@ interface TagWithColor extends Tag {
     color: string;
 }
 
-type SortField = "title" | "location";
+type SortField = "title" | "location" | "url";
 
 const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }> = ({radios, editable = false}) => {
     const [loading, setLoading] = useState(true);
@@ -77,7 +77,8 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                     },
                     body: JSON.stringify({
                         title: radioToSave.title,
-                        location: radioToSave.location
+                        location: radioToSave.location,
+                        url: radioToSave.url,
                     }),
                 });
             } catch (error) {
@@ -102,6 +103,9 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                     </th>
                     <th className={styles.genres}>Genres</th>
                     <th className={styles.tags}>Tags</th>
+                    <th className={`clickable ${styles.url}`} onClick={() => handleSort("url")}>
+                        URL {renderArrow("url")}
+                    </th>
                     <th className={styles.actions}></th>
                 </tr>
                 </thead>
@@ -132,47 +136,50 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                         </td>
                         <td className={styles.genres}>
                             <div>
-                                {radio.genres.map((genre) => {
-                                    return (
-                                        <span
-                                            key={genre.id}
-                                            id={genre.id.toString()}
-                                            className={styles.genreItem}
-                                            style={{
-                                                // @ts-ignore
-                                                "--tagBGColor": `${genre.color}`,
-                                            }}
-                                        >{genre.title}</span>
-                                    )
-                                })}
+                                {radio.genres.map((genre) => (
+                                    <span
+                                        key={genre.id}
+                                        id={genre.id.toString()}
+                                        className={styles.genreItem}
+                                        style={{
+                                            // @ts-ignore
+                                            "--tagBGColor": `${genre.color}`,
+                                        }}
+                                    >{genre.title}</span>
+                                ))}
                             </div>
                         </td>
                         <td className={styles.tags}>
                             <div>
-                                {radio.tags.map((tag) => {
-                                    return (
-                                        <span
-                                            key={tag.id}
-                                            id={tag.id.toString()}
-                                            className={styles.tagItem}
-                                            style={{
-                                                // @ts-ignore
-                                                "--tagBGColor": `${tag.color}`,
-                                            }}
-                                        >
-                                        {tag.title}</span>
-                                    )
-                                })
-                                }
+                                {radio.tags.map((tag) => (
+                                    <span
+                                        key={tag.id}
+                                        id={tag.id.toString()}
+                                        className={styles.tagItem}
+                                        style={{
+                                            // @ts-ignore
+                                            "--tagBGColor": `${tag.color}`,
+                                        }}
+                                    >
+                                    {tag.title}</span>
+                                ))}
                             </div>
+                        </td>
+                        <td className={styles.url}>
+                            {editable ? (
+                                <input
+                                    type="text"
+                                    value={radio.url}
+                                    onChange={(e) => handleEdit(radio.id, "url", e.target.value)}
+                                />
+                            ) : (
+                                <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
+                            )}
                         </td>
                         <td>
                             {editable && editedRadios.includes(radio.id) ? (
-                                    <button onClick={() => saveChanges(radio.id)}>Save
-                                    </button>
-                                ) :
-                                <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
-                            }
+                                <button onClick={() => saveChanges(radio.id)}>Save</button>
+                            ) : null}
                         </td>
                     </tr>
                 ))}
