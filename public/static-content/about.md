@@ -11,4 +11,12 @@ If you want to contribute to the project, feel free to contact me via <a href="m
 The source code is available
 on <a href="https://www.github.com/schnavy/on-on-air" target="_blank">GitHub</a>.
 
+Planned/Possible Fearues:
+- Add a rating system
+- Edit existing entries
+- Embed live streams 
+- Indicate current live radios
+
+<br/>
+
 Developed and initated by <a href="https://davidwahrenburg.de" target="_blank">David Wahrenburg</a>.
