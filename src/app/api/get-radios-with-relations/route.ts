@@ -1,11 +1,17 @@
 import prisma from "../../../lib/prisma";
 import {hashStringToHue, hslToRgb} from "@/utils/helpers";
+import {Radio} from "@prisma/client";
 
 function getPastelColorForTag(tagName: string) {
     const hue = hashStringToHue(tagName);
     const saturation = 80;
     const lightness = 60;
     return hslToRgb(hue, saturation, lightness);
+}
+
+interface RasdioWithGenresAndTags extends Radio {
+    genres: { title: string }[];
+    tags: { title: string }[];
 }
 
 export async function GET() {
@@ -17,7 +23,7 @@ export async function GET() {
             },
         });
 
-        const radiosWithColoredTags = radios.map((radio) => ({
+        const radiosWithColoredTags = radios.map((radio: RasdioWithGenresAndTags) => ({
             ...radio,
             genres: radio.genres.map((genre) => ({
                 ...genre,
@@ -28,8 +34,6 @@ export async function GET() {
                 color: getPastelColorForTag(tag.title), // Consistent RGB color for each tag
             })),
         }));
-
-        console.log(radiosWithColoredTags);
 
         return Response.json({data: radiosWithColoredTags}, {status: 200});
     } catch (error) {
