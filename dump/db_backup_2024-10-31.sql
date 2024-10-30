@@ -16,6 +16,40 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE IF EXISTS ONLY public."_RadioTags" DROP CONSTRAINT IF EXISTS "_RadioTags_B_fkey";
+ALTER TABLE IF EXISTS ONLY public."_RadioTags" DROP CONSTRAINT IF EXISTS "_RadioTags_A_fkey";
+ALTER TABLE IF EXISTS ONLY public."_RadioGenres" DROP CONSTRAINT IF EXISTS "_RadioGenres_B_fkey";
+ALTER TABLE IF EXISTS ONLY public."_RadioGenres" DROP CONSTRAINT IF EXISTS "_RadioGenres_A_fkey";
+ALTER TABLE IF EXISTS ONLY public."Session" DROP CONSTRAINT IF EXISTS "Session_userId_fkey";
+DROP INDEX IF EXISTS public."_RadioTags_B_index";
+DROP INDEX IF EXISTS public."_RadioTags_AB_unique";
+DROP INDEX IF EXISTS public."_RadioGenres_B_index";
+DROP INDEX IF EXISTS public."_RadioGenres_AB_unique";
+DROP INDEX IF EXISTS public."User_email_key";
+DROP INDEX IF EXISTS public."Tag_title_key";
+DROP INDEX IF EXISTS public."Session_sessionToken_key";
+DROP INDEX IF EXISTS public."Genre_title_key";
+ALTER TABLE IF EXISTS ONLY public._prisma_migrations DROP CONSTRAINT IF EXISTS _prisma_migrations_pkey;
+ALTER TABLE IF EXISTS ONLY public."VerificationToken" DROP CONSTRAINT IF EXISTS "VerificationToken_pkey";
+ALTER TABLE IF EXISTS ONLY public."User" DROP CONSTRAINT IF EXISTS "User_pkey";
+ALTER TABLE IF EXISTS ONLY public."Tag" DROP CONSTRAINT IF EXISTS "Tag_pkey";
+ALTER TABLE IF EXISTS ONLY public."Radio" DROP CONSTRAINT IF EXISTS "Radio_pkey";
+ALTER TABLE IF EXISTS ONLY public."Genre" DROP CONSTRAINT IF EXISTS "Genre_pkey";
+ALTER TABLE IF EXISTS public."Tag" ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public."Radio" ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public."Genre" ALTER COLUMN id DROP DEFAULT;
+DROP TABLE IF EXISTS public._prisma_migrations;
+DROP TABLE IF EXISTS public."_RadioTags";
+DROP TABLE IF EXISTS public."_RadioGenres";
+DROP TABLE IF EXISTS public."VerificationToken";
+DROP TABLE IF EXISTS public."User";
+DROP SEQUENCE IF EXISTS public."Tag_id_seq";
+DROP TABLE IF EXISTS public."Tag";
+DROP TABLE IF EXISTS public."Session";
+DROP SEQUENCE IF EXISTS public."Radio_id_seq";
+DROP TABLE IF EXISTS public."Radio";
+DROP SEQUENCE IF EXISTS public."Genre_id_seq";
+DROP TABLE IF EXISTS public."Genre";
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -267,7 +301,6 @@ COPY public."Genre" (id, title) FROM stdin;
 --
 
 COPY public."Radio" (id, title, url, "createdAt", "updatedAt", reviewed, description, slug, status, active, location) FROM stdin;
-42	THF Radio	https://www.thfradio.de/de	2024-10-27 23:32:22.279	2024-10-27 23:32:22.279	f	A community radio from Berlin, Germany	thf-radio	submitted	t	Berlin, Germany
 43	Kiosk Radio	https://kioskradio.com/	2024-10-27 23:32:22.286	2024-10-27 23:32:22.286	f	An independent outdoor radio in Brussels, Belgium	kiosk-radio	submitted	t	Brussels, Belgium
 44	Radio Angrezi	https://radioangrezi.de/	2024-10-27 23:32:22.291	2024-10-27 23:32:22.291	f	A cultural radio focused on diversity from Bremen, Germany	radio-angrezi	submitted	t	Bremen, Germany
 45	Hallo Radio	https://www.halloradio.net/	2024-10-27 23:32:22.296	2024-10-27 23:32:22.296	f	A DIY alternative radio from Hamburg, Germany	hallo-radio	submitted	t	Hamburg, Germany
@@ -285,6 +318,7 @@ COPY public."Radio" (id, title, url, "createdAt", "updatedAt", reviewed, descrip
 59	Radio Relativa	https://radiorelativa.eu/	2024-10-27 23:32:22.384	2024-10-27 23:32:22.384	f	An independent eclectic radio from Madrid, Spain	radio-relativa	submitted	t	Madrid, Spain
 60	Ja Ja Ja Nee Nee Nee	https://www.jajajaneeneenee.com/	2024-10-27 23:32:22.389	2024-10-27 23:32:22.389	f	An experimental art radio from Amsterdam, Netherlands	ja-ja-ja-nee-nee-nee	submitted	t	Amsterdam, Netherlands
 61	Radio Papesse	https://www.radiopapesse.org/	2024-10-27 23:32:22.393	2024-10-27 23:32:22.393	f	A nonprofit art radio from Florence, Italy	radio-papesse	submitted	t	Florence, Italy
+42	THF Radioeeeeee	https://www.thfradio.de/de	2024-10-27 23:32:22.279	2024-10-30 23:40:12.293	f	A community radio from Berlin, Germany	thf-radio	submitted	t	Berlin, Germany
 46	Radio 80000	https://www.radio80k.de/	2024-10-27 23:32:22.3	2024-10-28 00:51:10.201	f	A community radio representing the Munich scene	radio-80000	submitted	t	Munich, Germany
 47	NTS Radio	https://www.nts.live/	2024-10-27 23:32:22.329	2024-10-28 00:56:55.956	f	A global radio broadcasting from London, UK	nts-radio	submitted	t	London, UK
 62	Lyl Radio	https://lyl.live/	2024-10-28 19:52:48.199	2024-10-28 19:52:48.199	f	An underground community radio with a multicultural approach from Lyon, France	lyl-radio	submitted	t	Lyon, France
@@ -307,6 +341,7 @@ ff027560-a20c-4d58-bc0f-718b33f55d20	cm2rzok130000u36uqwm0nslu	2024-11-26 19:55:
 15054004-93ab-4985-8dbd-c8178666763d	cm2rzok130000u36uqwm0nslu	2024-11-26 20:41:15.533	2024-10-27 20:41:15.534	2024-10-27 20:41:15.534
 bbbc61f8-dba0-4335-b863-ed4a7c9f9f75	cm2rzok130000u36uqwm0nslu	2024-11-26 22:02:46.007	2024-10-27 22:02:46.008	2024-10-27 22:02:46.008
 07212af7-e010-4c37-ace1-06c4af1525fb	cm2rzok130000u36uqwm0nslu	2024-11-27 19:57:25.876	2024-10-28 19:57:25.877	2024-10-28 19:57:25.877
+5105a41d-c744-4119-9b57-39d3a5b3c4eb	cm2rzok130000u36uqwm0nslu	2024-11-29 23:40:07.556	2024-10-30 23:40:07.557	2024-10-30 23:40:07.557
 \.
 
 
@@ -373,7 +408,7 @@ COPY public."Tag" (id, title) FROM stdin;
 --
 
 COPY public."User" (id, email, "emailVerified", "createdAt", "updatedAt") FROM stdin;
-cm2rzok130000u36uqwm0nslu	david.jo@icloud.com	2024-10-29 21:40:55.875	2024-10-27 19:34:53.799	2024-10-29 21:40:55.877
+cm2rzok130000u36uqwm0nslu	david.jo@icloud.com	2024-10-30 23:40:07.554	2024-10-27 19:34:53.799	2024-10-30 23:40:07.555
 \.
 
 

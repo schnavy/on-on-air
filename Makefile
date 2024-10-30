@@ -3,6 +3,12 @@ COMPOSE_FILE=docker-compose.yml
 COMPOSE_DEV_FILE=docker-compose.dev.yml
 COMPOSE_PROD_FILE=docker-compose.prod.yml
 
+# Load environment variables from .env file
+ifneq (,$(wildcard .env))
+    include .env
+    export $(shell sed 's/=.*//' .env)
+endif
+
 # Default target
 .PHONY: help
 help:
@@ -81,10 +87,11 @@ studio-logs:
 
 .PHONY: db-dump
 db-dump:
-	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_DEV_FILE) exec db pg_dump -U david -d on-on-air_db > prisma/dump/db_backup_$(shell date +%Y-%m-%d).sql
+	docker-compose -f $(COMPOSE_FILE) exec db pg_dump --clean --if-exists -U $(DB_USER) -d on-on-air_db > dump/db_backup_$(shell date +%Y-%m-%d).sql
 	@echo "Database dump saved as db_backup_$(shell date +%Y-%m-%d).sql"
 
+# Database Import
 .PHONY: db-import
 db-import:
-	docker-compose -f $(COMPOSE_FILE) -f $(COMPOSE_PROD_FILE) exec -T db sh -c 'psql -U $$DB_USER -d $$DB_NAME < $(PATH)'
-	@echo "Database import from $(DUMP_PATH) complete"
+	docker exec -i $(shell docker ps -qf "name=db") psql -U $(DB_USER) -d on-on-air_db -f $(PATH)
+	@echo "Database import from $(PATH) complete"
