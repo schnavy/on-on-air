@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import {useEffect, useState} from 'react';
-import styles from './FloatingMenu.module.scss';
+import {useEffect, useState} from "react";
+import styles from "./FloatingMenu.module.scss";
 import Link from "next/link";
 import {VscClose} from "react-icons/vsc";
 
 const FloatingMenu = () => {
-    const [leftPosition, setLeftPosition] = useState('10vw');
+    const [leftPosition, setLeftPosition] = useState("10vw");
     const [loading, setLoading] = useState(true);
-    const [searchText, setSearchText] = useState('');
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         const randomLeft = Math.floor(Math.random() * 30);
@@ -17,12 +17,14 @@ const FloatingMenu = () => {
     }, []);
 
     const handleClearSearch = () => {
-        setSearchText('');
+        setSearchText("");
     };
 
     return (
-        <nav className={styles.floatingNav + " " + (loading ? "loading" : "loaded")}
-             style={{left: leftPosition}}>
+        <nav
+            className={styles.floatingNav + " " + (loading ? "loading" : "loaded")}
+            style={{left: leftPosition}}
+        >
             <div>
                 <Link href="/" className={styles.link}>
                     On on Air<span className={styles.circle}></span>

@@ -3,7 +3,7 @@ export function hashStringToHue(str: string) {
     for (let i = 0; i < str.length; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
-    return Math.abs(hash % 360);  // Ensure hue is within 0-359
+    return Math.abs(hash % 360); // Ensure hue is within 0-359
 }
 
 export function hslToRgb(h: number, s: number, l: number) {
@@ -11,9 +11,11 @@ export function hslToRgb(h: number, s: number, l: number) {
     l /= 100;
 
     const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
     const m = l - c / 2;
-    let r = 0, g = 0, b = 0;
+    let r = 0,
+        g = 0,
+        b = 0;
 
     if (h >= 0 && h < 60) {
         r = c;

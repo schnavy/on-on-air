@@ -1,7 +1,5 @@
-import prisma from '../../../lib/prisma';
-import {NextResponse} from "next/server";
+import prisma from "../../../lib/prisma";
 import {hashStringToHue, hslToRgb} from "@/utils/helpers";
-
 
 function getPastelColorForTag(tagName: string) {
     const hue = hashStringToHue(tagName);
@@ -19,23 +17,25 @@ export async function GET() {
             },
         });
 
-        const radiosWithColoredTags = radios.map(radio => ({
+        const radiosWithColoredTags = radios.map((radio) => ({
             ...radio,
-            genres: radio.genres.map(genre => ({
+            genres: radio.genres.map((genre) => ({
                 ...genre,
-                color: getPastelColorForTag(genre.title),  // Consistent RGB color for each tag
+                color: getPastelColorForTag(genre.title), // Consistent RGB color for each tag
             })),
-            tags: radio.tags.map(tag => ({
+            tags: radio.tags.map((tag) => ({
                 ...tag,
-                color: getPastelColorForTag(tag.title),  // Consistent RGB color for each tag
+                color: getPastelColorForTag(tag.title), // Consistent RGB color for each tag
             })),
         }));
 
         console.log(radiosWithColoredTags);
 
-        return NextResponse.json({data: radiosWithColoredTags}, {status: 200});
-
+        return Response.json({data: radiosWithColoredTags}, {status: 200});
     } catch (error) {
-        return NextResponse.json({error: "Failed to fetch radios with relations."}, {status: 500});
+        return Response.json(
+            {error: "Failed to fetch radios with relations." + error},
+            {status: 500},
+        );
     }
 }
