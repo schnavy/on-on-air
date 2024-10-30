@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from "react";
 import {Genre, Radio, Tag} from "@prisma/client";
 import styles from "./RadioTable.module.scss";
+import {useSearchParams} from "next/navigation";
+
 
 interface RadioWithRelations extends Radio {
     genres: GenreWithColor[];
@@ -19,6 +21,7 @@ interface TagWithColor extends Tag {
 type SortField = "title" | "location" | "url";
 
 const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }> = ({radios, editable = false}) => {
+    const searchParams = useSearchParams();
     const [loading, setLoading] = useState(true);
     const [radiosState, setRadiosState] = useState<RadioWithRelations[]>(radios);
     const [editedRadios, setEditedRadios] = useState<number[]>([]);
@@ -26,16 +29,16 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
     const [sortField, setSortField] = useState<SortField>("title");
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const field = urlParams.get("sortField") as SortField;
-        const order = urlParams.get("sortOrder") as "asc" | "desc";
+        const field = searchParams.get("sortField") as SortField;
+        const order = searchParams.get("sortOrder") as "asc" | "desc";
+
         if (field && order) {
             setSortField(field);
             setSortOrder(order);
             sortRadios(field, order);
         }
         setLoading(false);
-    }, []);
+    }, [searchParams]);
 
     const sortRadios = (field: SortField, order: "asc" | "desc") => {
         const sortedRadios = [...radiosState].sort((a, b) =>
