@@ -1,23 +1,23 @@
 # Base image
-FROM node:18-alpine as base
+FROM node:18-alpine AS base
 WORKDIR /app
 COPY package*.json ./
 
 # Development stage
-FROM base as dev
+FROM base AS dev
 RUN npm install
 COPY . .
 CMD ["npm", "run", "dev"]
 
 # Build stage
-FROM base as build
+FROM base AS build
 RUN npm install
 COPY . .
 RUN npx prisma generate
 RUN npm run build
 
 # Production stage
-FROM node:18-alpine as prod
+FROM node:18-alpine AS prod
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --production
