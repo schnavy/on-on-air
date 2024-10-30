@@ -13,8 +13,8 @@ CMD ["npm", "run", "dev"]
 FROM base as build
 RUN npm install
 COPY . .
+RUN npx prisma generate
 RUN npm run build
-RUN npx prisma generate  # Add this to generate Prisma client
 
 # Production stage
 FROM node:18-alpine as prod
