@@ -9,7 +9,7 @@ function getPastelColorForTag(tagName: string) {
     return hslToRgb(hue, saturation, lightness);
 }
 
-interface RasdioWithGenresAndTags extends Radio {
+interface RadioWithGenresAndTags extends Radio {
     genres: { title: string }[];
     tags: { title: string }[];
 }
@@ -23,7 +23,7 @@ export async function GET() {
             },
         });
 
-        const radiosWithColoredTags = radios.map((radio: RasdioWithGenresAndTags) => ({
+        const radiosWithColoredTags = radios.map((radio: RadioWithGenresAndTags) => ({
             ...radio,
             genres: radio.genres.map((genre) => ({
                 ...genre,
