@@ -1,10 +1,10 @@
-"use client"
-import {signIn} from "next-auth/react"
+"use client";
+import {signIn} from "next-auth/react";
 
 export function SignIn() {
     return (
         <button onClick={() => signIn("email", {redirectTo: "/admin"})}>
             Einloggen
         </button>
-    )
+    );
 }

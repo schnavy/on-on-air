@@ -1,5 +1,5 @@
 "use client";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import {Genre, Radio, Tag} from "@prisma/client";
 import styles from "./RadioTable.module.scss";
 
@@ -18,12 +18,27 @@ interface TagWithColor extends Tag {
 
 type SortField = "title" | "location" | "url";
 
-const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }> = ({radios, editable = false}) => {
+const RadioTable: React.FC<{
+    radios: RadioWithRelations[];
+    editable?: boolean;
+}> = ({radios, editable = false}) => {
     const [loading, setLoading] = useState(true);
     const [radiosState, setRadiosState] = useState<RadioWithRelations[]>(radios);
     const [editedRadios, setEditedRadios] = useState<number[]>([]);
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
     const [sortField, setSortField] = useState<SortField>("title");
+
+    const sortRadios = useCallback(
+        (field: SortField, order: "asc" | "desc") => {
+            const sortedRadios = [...radiosState].sort((a, b) =>
+                order === "asc"
+                    ? a[field].localeCompare(b[field])
+                    : b[field].localeCompare(a[field]),
+            );
+            setRadiosState(sortedRadios);
+        },
+        [radiosState],
+    );
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -35,14 +50,7 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
             sortRadios(field, order);
         }
         setLoading(false);
-    }, []);
-
-    const sortRadios = (field: SortField, order: "asc" | "desc") => {
-        const sortedRadios = [...radiosState].sort((a, b) =>
-            order === "asc" ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field])
-        );
-        setRadiosState(sortedRadios);
-    };
+    }, [sortRadios]);
 
     const handleSort = (field: SortField) => {
         const newOrder = sortOrder === "asc" ? "desc" : "asc";
@@ -52,7 +60,11 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set("sortField", field);
         urlParams.set("sortOrder", newOrder);
-        window.history.pushState({}, "", `${window.location.pathname}?${urlParams.toString()}`);
+        window.history.pushState(
+            {},
+            "",
+            `${window.location.pathname}?${urlParams.toString()}`,
+        );
 
         sortRadios(field, newOrder);
     };
@@ -61,8 +73,8 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
         setEditedRadios((prevEditedRadios) => [...prevEditedRadios, id]);
         setRadiosState((prevRadios) =>
             prevRadios.map((radio) =>
-                radio.id === id ? {...radio, [field]: value} : radio
-            )
+                radio.id === id ? {...radio, [field]: value} : radio,
+            ),
         );
     };
 
@@ -84,26 +96,42 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
             } catch (error) {
                 console.error("Error updating radio:", error);
             }
-            setEditedRadios((prevEditedRadios) => prevEditedRadios.filter((editedId) => editedId !== id));
+            setEditedRadios((prevEditedRadios) =>
+                prevEditedRadios.filter((editedId) => editedId !== id),
+            );
         }
     };
 
-    const renderArrow = (field: SortField) => (sortField === field ? (sortOrder === "asc" ? "↑" : "↓") : "");
+    const renderArrow = (field: SortField) =>
+        sortField === field ? (sortOrder === "asc" ? "↑" : "↓") : "";
 
     return (
         <div className={styles.radioTableContainer}>
-            <table className={styles.mainRadioTable + " " + (loading ? "loading" : "loaded")}>
+            <table
+                className={
+                    styles.mainRadioTable + " " + (loading ? "loading" : "loaded")
+                }
+            >
                 <thead>
                 <tr>
-                    <th className={`clickable ${styles.title}`} onClick={() => handleSort("title")}>
+                    <th
+                        className={`clickable ${styles.title}`}
+                        onClick={() => handleSort("title")}
+                    >
                         Name {renderArrow("title")}
                     </th>
-                    <th className={`clickable ${styles.location}`} onClick={() => handleSort("location")}>
+                    <th
+                        className={`clickable ${styles.location}`}
+                        onClick={() => handleSort("location")}
+                    >
                         Location {renderArrow("location")}
                     </th>
                     <th className={styles.genres}>Genres</th>
                     <th className={styles.tags}>Tags</th>
-                    <th className={`clickable ${styles.url}`} onClick={() => handleSort("url")}>
+                    <th
+                        className={`clickable ${styles.url}`}
+                        onClick={() => handleSort("url")}
+                    >
                         URL {renderArrow("url")}
                     </th>
                     <th className={styles.actions}></th>
@@ -117,7 +145,9 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                 <input
                                     type="text"
                                     value={radio.title}
-                                    onChange={(e) => handleEdit(radio.id, "title", e.target.value)}
+                                    onChange={(e) =>
+                                        handleEdit(radio.id, "title", e.target.value)
+                                    }
                                 />
                             ) : (
                                 radio.title
@@ -128,7 +158,9 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                 <input
                                     type="text"
                                     value={radio.location}
-                                    onChange={(e) => handleEdit(radio.id, "location", e.target.value)}
+                                    onChange={(e) =>
+                                        handleEdit(radio.id, "location", e.target.value)
+                                    }
                                 />
                             ) : (
                                 radio.location
@@ -142,10 +174,12 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                         id={genre.id.toString()}
                                         className={styles.genreItem}
                                         style={{
-                                            // @ts-ignore
+                                            // @ts-expect-error CSS Variable
                                             "--tagBGColor": `${genre.color}`,
                                         }}
-                                    >{genre.title}</span>
+                                    >
+                      {genre.title}
+                    </span>
                                 ))}
                             </div>
                         </td>
@@ -157,11 +191,12 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                         id={tag.id.toString()}
                                         className={styles.tagItem}
                                         style={{
-                                            // @ts-ignore
+                                            // @ts-expect-error CSS Variable
                                             "--tagBGColor": `${tag.color}`,
                                         }}
                                     >
-                                    {tag.title}</span>
+                      {tag.title}
+                    </span>
                                 ))}
                             </div>
                         </td>
@@ -170,10 +205,14 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                 <input
                                     type="text"
                                     value={radio.url}
-                                    onChange={(e) => handleEdit(radio.id, "url", e.target.value)}
+                                    onChange={(e) =>
+                                        handleEdit(radio.id, "url", e.target.value)
+                                    }
                                 />
                             ) : (
-                                <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
+                                <a href={radio.url} target="_blank" rel="noreferrer">
+                                    ↗
+                                </a>
                             )}
                         </td>
                         <td>

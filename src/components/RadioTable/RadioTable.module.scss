@@ -16,7 +16,8 @@
     }
 
     tbody {
-      .genres, .tags {
+      .genres,
+      .tags {
         div {
           display: flex;
           flex-wrap: wrap;
@@ -24,8 +25,9 @@
           align-items: center;
           gap: var(--spacing-xs);
 
-          .genreItem, .tagItem {
-            font-size: .875rem;
+          .genreItem,
+          .tagItem {
+            font-size: 0.875rem;
             padding: var(--padding-item);
             background-color: rgba(var(--tagBGColor), 0.3); /* 50% opacity */
             transition: background-color 0.1s ease;
@@ -33,7 +35,10 @@
 
             &:hover {
               color: var(--background);
-              background-color: rgba(var(--tagBGColor), 1); /* 100% opacity on hover */
+              background-color: rgba(
+                              var(--tagBGColor),
+                              1
+              ); /* 100% opacity on hover */
             }
           }
         }
@@ -44,7 +49,8 @@
       padding: var(--spacing-sm) var(--spacing-md);
     }
 
-    thead tr, tbody tr:not(:last-child) {
+    thead tr,
+    tbody tr:not(:last-child) {
       border-bottom: 1px groove var(--muted-color);
     }
 
@@ -56,14 +62,16 @@
 
     /* Responsive design adjustments */
     @media (max-width: 1024px) {
-      thead, tbody {
+      thead,
+      tbody {
         .genres {
           display: none;
         }
       }
     }
     @media (max-width: 768px) {
-      thead, tbody {
+      thead,
+      tbody {
         .tags {
           display: none;
         }

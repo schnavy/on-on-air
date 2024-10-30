@@ -4,16 +4,8 @@
     "url": "https://www.thfradio.de/de",
     "description": "A community radio from Berlin, Germany",
     "slug": "thf-radio",
-    "genres": [
-      "Experimental",
-      "Electronic",
-      "Underground"
-    ],
-    "tags": [
-      "Community Radio",
-      "DJ Sets",
-      "Berlin Scene"
-    ],
+    "genres": ["Experimental", "Electronic", "Underground"],
+    "tags": ["Community Radio", "DJ Sets", "Berlin Scene"],
     "location": "Berlin, Germany"
   },
   {
@@ -21,16 +13,8 @@
     "url": "https://kioskradio.com/",
     "description": "An independent outdoor radio in Brussels, Belgium",
     "slug": "kiosk-radio",
-    "genres": [
-      "Electronic",
-      "Ambient",
-      "Experimental"
-    ],
-    "tags": [
-      "Outdoor Radio",
-      "Independent",
-      "Live Sessions"
-    ],
+    "genres": ["Electronic", "Ambient", "Experimental"],
+    "tags": ["Outdoor Radio", "Independent", "Live Sessions"],
     "location": "Brussels, Belgium"
   },
   {
@@ -38,16 +22,8 @@
     "url": "https://radioangrezi.de/",
     "description": "A cultural radio focused on diversity from Bremen, Germany",
     "slug": "radio-angrezi",
-    "genres": [
-      "World Music",
-      "Hip-Hop",
-      "Experimental"
-    ],
-    "tags": [
-      "Cultural Diversity",
-      "Community",
-      "International"
-    ],
+    "genres": ["World Music", "Hip-Hop", "Experimental"],
+    "tags": ["Cultural Diversity", "Community", "International"],
     "location": "Bremen, Germany"
   },
   {
@@ -55,16 +31,8 @@
     "url": "https://www.halloradio.net/",
     "description": "A DIY alternative radio from Hamburg, Germany",
     "slug": "hallo-radio",
-    "genres": [
-      "Indie",
-      "Punk",
-      "Experimental"
-    ],
-    "tags": [
-      "DIY",
-      "Alternative",
-      "Underground Music"
-    ],
+    "genres": ["Indie", "Punk", "Experimental"],
+    "tags": ["DIY", "Alternative", "Underground Music"],
     "location": "Hamburg, Germany"
   },
   {
@@ -72,16 +40,8 @@
     "url": "https://www.radio80k.de/",
     "description": "A community radio representing the Munich scene",
     "slug": "radio-80000",
-    "genres": [
-      "Electronic",
-      "Techno",
-      "Experimental"
-    ],
-    "tags": [
-      "Community Radio",
-      "Munich Scene",
-      "Underground"
-    ],
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "tags": ["Community Radio", "Munich Scene", "Underground"],
     "location": "Munich, Germany"
   },
   {
@@ -89,17 +49,8 @@
     "url": "https://www.nts.live/",
     "description": "A global radio broadcasting from London, UK",
     "slug": "nts-radio",
-    "genres": [
-      "Electronic",
-      "Jazz",
-      "Experimental",
-      "Global Music"
-    ],
-    "tags": [
-      "Eclectic",
-      "Independent",
-      "Global Reach"
-    ],
+    "genres": ["Electronic", "Jazz", "Experimental", "Global Music"],
+    "tags": ["Eclectic", "Independent", "Global Reach"],
     "location": "London, UK"
   },
   {
@@ -107,16 +58,8 @@
     "url": "https://sphere-radio.net/",
     "description": "An eclectic community radio from Leipzig, Germany",
     "slug": "sphere-radio",
-    "genres": [
-      "Experimental",
-      "Ambient",
-      "Electronic"
-    ],
-    "tags": [
-      "Community Radio",
-      "Independent",
-      "Eclectic"
-    ],
+    "genres": ["Experimental", "Ambient", "Electronic"],
+    "tags": ["Community Radio", "Independent", "Eclectic"],
     "location": "Leipzig, Germany"
   },
   {
@@ -124,17 +67,8 @@
     "url": "https://radiocorax.de/",
     "description": "A non-profit radio with cultural programming from Halle, Germany",
     "slug": "radio-corax",
-    "genres": [
-      "Talk",
-      "Experimental",
-      "Jazz",
-      "Electronic"
-    ],
-    "tags": [
-      "Community Radio",
-      "Cultural Programming",
-      "Non-profit"
-    ],
+    "genres": ["Talk", "Experimental", "Jazz", "Electronic"],
+    "tags": ["Community Radio", "Cultural Programming", "Non-profit"],
     "location": "Halle, Germany"
   },
   {
@@ -142,17 +76,8 @@
     "url": "https://cashmereradio.com/about/",
     "description": "An avant-garde cultural radio from Berlin Lichtenberg",
     "slug": "cashmere-radio",
-    "genres": [
-      "Sound Art",
-      "Experimental",
-      "Ambient",
-      "Electronic"
-    ],
-    "tags": [
-      "Avant-garde",
-      "Cultural",
-      "Sound Exploration"
-    ],
+    "genres": ["Sound Art", "Experimental", "Ambient", "Electronic"],
+    "tags": ["Avant-garde", "Cultural", "Sound Exploration"],
     "location": "Berlin Lichtenberg, Germany"
   },
   {
@@ -160,17 +85,8 @@
     "url": "https://www.eosradio.de/",
     "description": "An underground electronic radio from Frankfurt, Germany",
     "slug": "eos-radio",
-    "genres": [
-      "Electronic",
-      "Techno",
-      "House",
-      "Experimental"
-    ],
-    "tags": [
-      "Frankfurt Scene",
-      "Underground",
-      "DJ Sets"
-    ],
+    "genres": ["Electronic", "Techno", "House", "Experimental"],
+    "tags": ["Frankfurt Scene", "Underground", "DJ Sets"],
     "location": "Frankfurt, Germany"
   },
   {
@@ -178,17 +94,8 @@
     "url": "https://www.radiogrenouille.com/",
     "description": "A community art radio from Marseille, France",
     "slug": "radio-grenouille",
-    "genres": [
-      "World Music",
-      "Jazz",
-      "Experimental",
-      "Electronic"
-    ],
-    "tags": [
-      "Cultural Programming",
-      "Art Radio",
-      "Community"
-    ],
+    "genres": ["World Music", "Jazz", "Experimental", "Electronic"],
+    "tags": ["Cultural Programming", "Art Radio", "Community"],
     "location": "Marseille, France"
   },
   {
@@ -196,16 +103,8 @@
     "url": "https://yamakan.place/palestine/",
     "description": "A cultural exchange radio from Bethlehem, Palestine",
     "slug": "radio-alhara",
-    "genres": [
-      "Experimental",
-      "Electronic",
-      "Global Music"
-    ],
-    "tags": [
-      "Middle Eastern Scene",
-      "Global Sound",
-      "Cultural Exchange"
-    ],
+    "genres": ["Experimental", "Electronic", "Global Music"],
+    "tags": ["Middle Eastern Scene", "Global Sound", "Cultural Exchange"],
     "location": "Bethlehem, Palestine"
   },
   {
@@ -213,17 +112,8 @@
     "url": "https://www.dublab.com/",
     "description": "A nonprofit radio for innovative sounds in Los Angeles, US",
     "slug": "dublab",
-    "genres": [
-      "Ambient",
-      "Experimental",
-      "World Music",
-      "Electronic"
-    ],
-    "tags": [
-      "Nonprofit",
-      "Eclectic",
-      "Innovative Sounds"
-    ],
+    "genres": ["Ambient", "Experimental", "World Music", "Electronic"],
+    "tags": ["Nonprofit", "Eclectic", "Innovative Sounds"],
     "location": "Los Angeles, US"
   },
   {
@@ -231,17 +121,8 @@
     "url": "https://www.thelotradio.com/",
     "description": "An independent radio from Brooklyn, NYC, US",
     "slug": "the-lot-radio",
-    "genres": [
-      "Electronic",
-      "House",
-      "Techno",
-      "Experimental"
-    ],
-    "tags": [
-      "Brooklyn Scene",
-      "Independent",
-      "Live Sets"
-    ],
+    "genres": ["Electronic", "House", "Techno", "Experimental"],
+    "tags": ["Brooklyn Scene", "Independent", "Live Sets"],
     "location": "Brooklyn, NYC, US"
   },
   {
@@ -249,16 +130,8 @@
     "url": "https://extra.resonance.fm",
     "description": "An avant-garde art radio from London, UK",
     "slug": "resonance-extra",
-    "genres": [
-      "Experimental",
-      "Sound Art",
-      "Ambient"
-    ],
-    "tags": [
-      "Avant-garde",
-      "Cultural",
-      "Sound Art"
-    ],
+    "genres": ["Experimental", "Sound Art", "Ambient"],
+    "tags": ["Avant-garde", "Cultural", "Sound Art"],
     "location": "London, UK"
   },
   {
@@ -266,17 +139,8 @@
     "url": "https://www.noodsradio.com/",
     "description": "An underground DJ radio from Bristol, UK",
     "slug": "noods-radio",
-    "genres": [
-      "Electronic",
-      "Bass Music",
-      "Experimental",
-      "Global Music"
-    ],
-    "tags": [
-      "Bristol Scene",
-      "Underground",
-      "DJ Collectives"
-    ],
+    "genres": ["Electronic", "Bass Music", "Experimental", "Global Music"],
+    "tags": ["Bristol Scene", "Underground", "DJ Collectives"],
     "location": "Bristol, UK"
   },
   {
@@ -284,16 +148,8 @@
     "url": "https://www.radioquantica.com/",
     "description": "An avant-garde radio representing the Lisbon scene",
     "slug": "radio-quantica",
-    "genres": [
-      "Electronic",
-      "Techno",
-      "Experimental"
-    ],
-    "tags": [
-      "Lisbon Scene",
-      "Avant-garde",
-      "Underground"
-    ],
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "tags": ["Lisbon Scene", "Avant-garde", "Underground"],
     "location": "Lisbon, Portugal"
   },
   {
@@ -301,16 +157,8 @@
     "url": "https://radiorelativa.eu/",
     "description": "An independent eclectic radio from Madrid, Spain",
     "slug": "radio-relativa",
-    "genres": [
-      "Experimental",
-      "Electronic",
-      "Indie"
-    ],
-    "tags": [
-      "Madrid Scene",
-      "Independent",
-      "Eclectic Programming"
-    ],
+    "genres": ["Experimental", "Electronic", "Indie"],
+    "tags": ["Madrid Scene", "Independent", "Eclectic Programming"],
     "location": "Madrid, Spain"
   },
   {
@@ -318,16 +166,8 @@
     "url": "https://www.jajajaneeneenee.com/",
     "description": "An experimental art radio from Amsterdam, Netherlands",
     "slug": "ja-ja-ja-nee-nee-nee",
-    "genres": [
-      "Sound Art",
-      "Experimental",
-      "Spoken Word"
-    ],
-    "tags": [
-      "Art Radio",
-      "Contemporary Art",
-      "Sound Experiments"
-    ],
+    "genres": ["Sound Art", "Experimental", "Spoken Word"],
+    "tags": ["Art Radio", "Contemporary Art", "Sound Experiments"],
     "location": "Amsterdam, Netherlands"
   },
   {
@@ -335,16 +175,8 @@
     "url": "https://www.radiopapesse.org/",
     "description": "A nonprofit art radio from Florence, Italy",
     "slug": "radio-papesse",
-    "genres": [
-      "Sound Art",
-      "Experimental",
-      "Field Recordings"
-    ],
-    "tags": [
-      "Art Radio",
-      "Cultural Projects",
-      "Nonprofit"
-    ],
+    "genres": ["Sound Art", "Experimental", "Field Recordings"],
+    "tags": ["Art Radio", "Cultural Projects", "Nonprofit"],
     "location": "Florence, Italy"
   },
   {
@@ -352,16 +184,8 @@
     "url": "https://lyl.live/",
     "description": "An underground community radio with a multicultural approach from Lyon, France",
     "slug": "lyl-radio",
-    "genres": [
-      "Electronic",
-      "Experimental",
-      "Global Music"
-    ],
-    "tags": [
-      "Lyon Scene",
-      "Community Radio",
-      "Independent"
-    ],
+    "genres": ["Electronic", "Experimental", "Global Music"],
+    "tags": ["Lyon Scene", "Community Radio", "Independent"],
     "location": "Lyon, France"
   },
   {
@@ -369,16 +193,8 @@
     "url": "https://www.movement.radio/",
     "description": "A cultural exchange and experimental radio from Athens, Greece",
     "slug": "movement-radio",
-    "genres": [
-      "Electronic",
-      "Ambient",
-      "Global Music"
-    ],
-    "tags": [
-      "Cultural Exchange",
-      "Independent",
-      "Experimental"
-    ],
+    "genres": ["Electronic", "Ambient", "Global Music"],
+    "tags": ["Cultural Exchange", "Independent", "Experimental"],
     "location": "Athens, Greece"
   },
   {
@@ -386,16 +202,8 @@
     "url": "https://www.radioraheem.it/",
     "description": "A vibrant independent radio representing Milan’s underground music scene",
     "slug": "radio-raheem",
-    "genres": [
-      "Electronic",
-      "House",
-      "Experimental"
-    ],
-    "tags": [
-      "Milan Scene",
-      "Independent",
-      "DJ Sets"
-    ],
+    "genres": ["Electronic", "House", "Experimental"],
+    "tags": ["Milan Scene", "Independent", "DJ Sets"],
     "location": "Milan, Italy"
   },
   {
@@ -403,17 +211,8 @@
     "url": "https://www.radiocampusparis.org/",
     "description": "A community-driven student radio from Paris, France",
     "slug": "radio-campus-paris",
-    "genres": [
-      "Indie",
-      "Jazz",
-      "Electronic",
-      "Experimental"
-    ],
-    "tags": [
-      "Community Radio",
-      "Student Radio",
-      "Paris Scene"
-    ],
+    "genres": ["Indie", "Jazz", "Electronic", "Experimental"],
+    "tags": ["Community Radio", "Student Radio", "Paris Scene"],
     "location": "Paris, France"
   },
   {
@@ -421,16 +220,8 @@
     "url": "https://ma3azef.com/radio/",
     "description": "An experimental radio showcasing alternative and underground music from the Arab world",
     "slug": "ma3azef-radio",
-    "genres": [
-      "Electronic",
-      "Experimental",
-      "Global Music"
-    ],
-    "tags": [
-      "Arab World",
-      "Alternative",
-      "Independent"
-    ],
+    "genres": ["Electronic", "Experimental", "Global Music"],
+    "tags": ["Arab World", "Alternative", "Independent"],
     "location": "Remote/Online"
   },
   {
@@ -438,16 +229,8 @@
     "url": "https://www.radioquantica.com/",
     "description": "A Lisbon-based underground electronic music radio",
     "slug": "radio-quantica",
-    "genres": [
-      "Electronic",
-      "Techno",
-      "Experimental"
-    ],
-    "tags": [
-      "Lisbon Scene",
-      "Independent",
-      "Underground"
-    ],
+    "genres": ["Electronic", "Techno", "Experimental"],
+    "tags": ["Lisbon Scene", "Independent", "Underground"],
     "location": "Lisbon, Portugal"
   },
   {
@@ -455,16 +238,8 @@
     "url": "https://www.mutantradio.in/",
     "description": "A nomadic experimental station with roots in Tbilisi, Georgia",
     "slug": "mutant-radio",
-    "genres": [
-      "Electronic",
-      "Ambient",
-      "Experimental"
-    ],
-    "tags": [
-      "Nomadic Radio",
-      "Independent",
-      "Tbilisi Scene"
-    ],
+    "genres": ["Electronic", "Ambient", "Experimental"],
+    "tags": ["Nomadic Radio", "Independent", "Tbilisi Scene"],
     "location": "Tbilisi, Georgia"
   },
   {
@@ -472,16 +247,8 @@
     "url": "https://www.hotelradioparis.com/",
     "description": "An indie community radio from Paris, France",
     "slug": "hotel-radio-paris",
-    "genres": [
-      "Electronic",
-      "Indie",
-      "Experimental"
-    ],
-    "tags": [
-      "Paris Scene",
-      "Community Radio",
-      "Independent"
-    ],
+    "genres": ["Electronic", "Indie", "Experimental"],
+    "tags": ["Paris Scene", "Community Radio", "Independent"],
     "location": "Paris, France"
   },
   {
@@ -489,17 +256,8 @@
     "url": "https://cashmereradio.com/",
     "description": "An avant-garde experimental station in Berlin Lichtenberg",
     "slug": "cashmere-radio",
-    "genres": [
-      "Sound Art",
-      "Experimental",
-      "Ambient",
-      "Electronic"
-    ],
-    "tags": [
-      "Berlin Scene",
-      "Avant-garde",
-      "Sound Exploration"
-    ],
+    "genres": ["Sound Art", "Experimental", "Ambient", "Electronic"],
+    "tags": ["Berlin Scene", "Avant-garde", "Sound Exploration"],
     "location": "Berlin, Germany"
   },
   {
@@ -507,16 +265,8 @@
     "url": "https://www.orfium.com/radio",
     "description": "A virtual radio station for creative music culture",
     "slug": "orfium-radio",
-    "genres": [
-      "Electronic",
-      "Experimental",
-      "Ambient"
-    ],
-    "tags": [
-      "Virtual Radio",
-      "Global Culture",
-      "Creative Community"
-    ],
+    "genres": ["Electronic", "Experimental", "Ambient"],
+    "tags": ["Virtual Radio", "Global Culture", "Creative Community"],
     "location": "Online"
   }
 ]

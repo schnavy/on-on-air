@@ -12,9 +12,10 @@ The source code is available
 on <a href="https://www.github.com/schnavy/on-on-air" target="_blank">GitHub</a>.
 
 Planned/Possible Fearues:
+
 - Add a rating system
 - Edit existing entries
-- Embed live streams 
+- Embed live streams
 - Indicate current live radios
 
 <br/>

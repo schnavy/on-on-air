@@ -1,19 +1,24 @@
-import prisma from '../../../../lib/prisma';
-import {NextResponse} from "next/server";
+import prisma from "../../../../lib/prisma";
 
-export async function POST(req: any, {params}: { params: { id: string } }) {
-    const id = params.id;
-    const body = await req.json();  // Parse JSON body directly
+export async function POST(
+    req: Request,
+    {params}: { params: Promise<{ id: string }> }
+) {
+    const id = (await params).id
+    const body = await req.json();
 
     try {
         const radio = await prisma.radio.update({
             where: {id: Number(id)},
-            data: body
+            data: body,
         });
 
-        return NextResponse.json({data: radio}, {status: 200});
+        return Response.json({data: radio}, {status: 200});
     } catch (error) {
         console.error("Error updating radio:", error);
-        return NextResponse.json({error: "Failed to update radio"}, {status: 500});
+        return Response.json(
+            {error: "Failed to update radio"},
+            {status: 500},
+        );
     }
 }

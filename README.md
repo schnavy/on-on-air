@@ -12,12 +12,14 @@ This app is using the follwing stack:
 ### How to run
 
 In Development mode:
+
 1. Make start
 2. Make migrate (If you are running for the first time, you deleted the volume, rebuild the container or made changes to the schema)
 3. Make studio (If you want to see the database in the browser)
 4. Make stop
 
 In Production mode:
+
 1. Make start-prod
 2. Make migrate-prod
 3. Make stop-prod

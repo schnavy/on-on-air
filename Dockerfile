@@ -14,6 +14,7 @@ FROM base as build
 RUN npm install
 COPY . .
 RUN npm run build
+RUN npx prisma generate  # Add this to generate Prisma client
 
 # Production stage
 FROM node:18-alpine as prod
@@ -26,4 +27,4 @@ COPY prisma ./prisma
 COPY .env .env
 ENV NODE_ENV production
 EXPOSE 3000
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma generate && npm start"]

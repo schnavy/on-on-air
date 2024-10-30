@@ -23,13 +23,12 @@
 
   .circle {
     display: inline-block;
-    width: .7rem;
-    height: .7rem;
+    width: 0.7rem;
+    height: 0.7rem;
     border-radius: 20px;
     background-color: blue;
     margin-left: var(--spacing-sm);
   }
-
 
   .searchContainer {
     display: flex;
@@ -54,7 +53,7 @@
         width: 20rem;
 
         &::placeholder {
-          opacity: .3;
+          opacity: 0.3;
         }
       }
     }
