@@ -26,7 +26,7 @@ help:
 	@echo "  make studio-stop     						- Stop Prisma Studio"
 	@echo "  make studio-logs     						- View Prisma Studio logs"
 	@echo "  make db-dump        						- Save a dump of the current database with the current date"
-	@echo "  make db-import PATH=/path/to/backup.sql 	- Import a database dump to production"
+	@echo "  make db-import DUMP_FILE=/path/to/backup.sql 	- Import a database dump to production"
 
 
 
@@ -93,5 +93,5 @@ db-dump:
 # Database Import
 .PHONY: db-import
 db-import:
-	docker exec -i $(shell docker ps -qf "name=db") psql -U $(DB_USER) -d on-on-air_db -f $(PATH)
-	@echo "Database import from $(PATH) complete"
+	docker exec -i $(shell docker ps -qf "name=db") psql -U $(DB_USER) -d on-on-air_db -f $(DUMP_FILE)
+	@echo "Database import from $(DUMP_FILE) complete"

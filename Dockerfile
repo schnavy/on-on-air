@@ -25,6 +25,6 @@ COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
 COPY prisma ./prisma
 COPY .env .env
-ENV NODE_ENV production
+ENV NODE_ENV=production
 EXPOSE 3000
 CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma generate && npm start"]
