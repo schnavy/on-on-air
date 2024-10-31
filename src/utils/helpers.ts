@@ -49,3 +49,11 @@ export function hslToRgb(h: number, s: number, l: number) {
 
     return `${r}, ${g}, ${b}`;
 }
+
+import {RadioWithRelations, SortField} from "@/components/RadioTable/RadioTableTypes";
+
+export const sortRadios = (radios: RadioWithRelations[], field: SortField, order: "asc" | "desc") => {
+    return [...radios].sort((a, b) =>
+        order === "asc" ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field])
+    );
+};

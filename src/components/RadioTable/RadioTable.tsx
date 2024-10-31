@@ -1,119 +1,115 @@
 "use client";
-import React, {useState, useEffect} from "react";
-import {Genre, Radio, Tag} from "@prisma/client";
+import React, {useMemo, useState} from "react";
 import styles from "./RadioTable.module.scss";
-import {useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
+import TableHeader from "@/components/RadioTable/TableHeader";
+import {RadioWithRelations, SortField} from "./RadioTableTypes";
 
-
-interface RadioWithRelations extends Radio {
-    genres: GenreWithColor[];
-    tags: TagWithColor[];
+interface RadioTableProps {
+    radios: RadioWithRelations[];
+    editable?: boolean;
 }
 
-interface GenreWithColor extends Genre {
-    color: string;
-}
-
-interface TagWithColor extends Tag {
-    color: string;
-}
-
-type SortField = "title" | "location" | "url";
-
-const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }> = ({radios, editable = false}) => {
+const RadioTable: React.FC<RadioTableProps> = ({
+                                                   radios,
+                                                   editable = false,
+                                               }) => {
+    const router = useRouter();
     const searchParams = useSearchParams();
-    const [loading, setLoading] = useState(true);
-    const [radiosState, setRadiosState] = useState<RadioWithRelations[]>(radios);
+
+    const sortField = (searchParams.get("sortField") as SortField) || "title";
+    const sortOrder = (searchParams.get("sortOrder") as "asc" | "desc") || "asc";
+    const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+
     const [editedRadios, setEditedRadios] = useState<number[]>([]);
-    const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-    const [sortField, setSortField] = useState<SortField>("title");
-
-    useEffect(() => {
-        const field = searchParams.get("sortField") as SortField;
-        const order = searchParams.get("sortOrder") as "asc" | "desc";
-
-        if (field && order) {
-            setSortField(field);
-            setSortOrder(order);
-            sortRadios(field, order);
-        }
-        setLoading(false);
-    }, [searchParams]);
-
-    const sortRadios = (field: SortField, order: "asc" | "desc") => {
-        const sortedRadios = [...radiosState].sort((a, b) =>
-            order === "asc" ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field])
-        );
-        setRadiosState(sortedRadios);
-    };
 
     const handleSort = (field: SortField) => {
-        const newOrder = sortOrder === "asc" ? "desc" : "asc";
-        setSortOrder(newOrder);
-        setSortField(field);
+        const newOrder = sortField === field && sortOrder === "asc" ? "desc" : "asc";
 
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set("sortField", field);
-        urlParams.set("sortOrder", newOrder);
-        window.history.pushState({}, "", `${window.location.pathname}?${urlParams.toString()}`);
+        const params = new URLSearchParams(Array.from(searchParams.entries()));
+        params.set("sortField", field);
+        params.set("sortOrder", newOrder);
 
-        sortRadios(field, newOrder);
+        router.replace(`?${params.toString()}`);
     };
 
+    const filteredAndSortedRadios = useMemo(() => {
+        let filteredRadios = radios;
+
+        if (searchQuery) {
+            filteredRadios = radios.filter((radio) => {
+                const lowerSearch = searchQuery.toLowerCase();
+                const titleMatch = radio.title.toLowerCase().includes(lowerSearch);
+                const descriptionMatch = radio.description?.toLowerCase().includes(lowerSearch);
+                const locationMatch = radio.location?.toLowerCase().includes(lowerSearch);
+                const tagsMatch = radio.tags.some((tag) =>
+                    tag.title.toLowerCase().includes(lowerSearch)
+                );
+                const genresMatch = radio.genres.some((genre) =>
+                    genre.title.toLowerCase().includes(lowerSearch)
+                );
+
+                return titleMatch || descriptionMatch || locationMatch || tagsMatch || genresMatch;
+            });
+        }
+
+        return [...filteredRadios].sort((a, b) => {
+            const aValue = a[sortField]?.toString().toLowerCase() || "";
+            const bValue = b[sortField]?.toString().toLowerCase() || "";
+
+            if (sortOrder === "asc") {
+                return aValue.localeCompare(bValue);
+            } else {
+                return bValue.localeCompare(aValue);
+            }
+        });
+    }, [radios, searchQuery, sortField, sortOrder]);
+
     const handleEdit = (id: number, field: SortField, value: string) => {
-        setEditedRadios((prevEditedRadios) => [...prevEditedRadios, id]);
-        setRadiosState((prevRadios) =>
-            prevRadios.map((radio) =>
-                radio.id === id ? {...radio, [field]: value} : radio
-            )
+        setEditedRadios((prevEditedRadios) =>
+            prevEditedRadios.includes(id) ? prevEditedRadios : [...prevEditedRadios, id]
+        );
+
+        radios = radios.map((radio) =>
+            radio.id === id ? {...radio, [field]: value} : radio
         );
     };
 
     const saveChanges = async (id: number) => {
-        const radioToSave = radiosState.find((radio) => radio.id === id);
+        const radioToSave = radios.find((radio) => radio.id === id);
         if (radioToSave) {
             try {
-                await fetch(`/api/radios/${id}`, {
+                const response = await fetch(`/api/radios/${id}`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
                         title: radioToSave.title,
                         location: radioToSave.location,
                         url: radioToSave.url,
                     }),
                 });
+
+                if (!response.ok) console.log("Error updating radio:", response.statusText);
             } catch (error) {
                 console.error("Error updating radio:", error);
+            } finally {
+                setEditedRadios((prevEditedRadios) =>
+                    prevEditedRadios.filter((editedId) => editedId !== id)
+                );
             }
-            setEditedRadios((prevEditedRadios) => prevEditedRadios.filter((editedId) => editedId !== id));
         }
     };
 
-    const renderArrow = (field: SortField) => (sortField === field ? (sortOrder === "asc" ? "↑" : "↓") : "");
-
     return (
         <div className={styles.radioTableContainer}>
-            <table className={styles.mainRadioTable + " " + (loading ? "loading" : "loaded")}>
-                <thead>
-                <tr>
-                    <th className={`clickable ${styles.title}`} onClick={() => handleSort("title")}>
-                        Name {renderArrow("title")}
-                    </th>
-                    <th className={`clickable ${styles.location}`} onClick={() => handleSort("location")}>
-                        Location {renderArrow("location")}
-                    </th>
-                    <th className={styles.genres}>Genres</th>
-                    <th className={styles.tags}>Tags</th>
-                    <th className={`clickable ${styles.url}`} onClick={() => handleSort("url")}>
-                        URL {renderArrow("url")}
-                    </th>
-                    <th className={styles.actions}></th>
-                </tr>
-                </thead>
+            <table className={`${styles.mainRadioTable}`}>
+                <TableHeader
+                    sortField={sortField}
+                    sortOrder={sortOrder}
+                    handleSort={handleSort}
+                />
                 <tbody>
-                {radiosState.map((radio) => (
+                {filteredAndSortedRadios.map((radio) => (
                     <tr key={radio.id}>
                         <td className={styles.title}>
                             {editable ? (
@@ -144,11 +140,11 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                         key={genre.id}
                                         id={genre.id.toString()}
                                         className={styles.genreItem}
-                                        style={{
-                                            // @ts-ignore
-                                            "--tagBGColor": `${genre.color}`,
-                                        }}
-                                    >{genre.title}</span>
+                                        // @ts-ignore
+                                        style={{"--tagBGColor": genre.color}}
+                                    >
+                      {genre.title}
+                    </span>
                                 ))}
                             </div>
                         </td>
@@ -159,12 +155,11 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                         key={tag.id}
                                         id={tag.id.toString()}
                                         className={styles.tagItem}
-                                        style={{
-                                            // @ts-ignore
-                                            "--tagBGColor": `${tag.color}`,
-                                        }}
+                                        // @ts-ignore
+                                        style={{"--tagBGColor": tag.color}}
                                     >
-                                    {tag.title}</span>
+                      {tag.title}
+                    </span>
                                 ))}
                             </div>
                         </td>
@@ -176,14 +171,23 @@ const RadioTable: React.FC<{ radios: RadioWithRelations[], editable?: boolean }>
                                     onChange={(e) => handleEdit(radio.id, "url", e.target.value)}
                                 />
                             ) : (
-                                <a href={radio.url} target="_blank" rel="noreferrer">↗</a>
+                                <a
+                                    href={radio.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={`Visit ${radio.title}`}
+                                >
+                                    ↗
+                                </a>
                             )}
                         </td>
-                        <td>
-                            {editable && editedRadios.includes(radio.id) ? (
-                                <button onClick={() => saveChanges(radio.id)}>Save</button>
-                            ) : null}
-                        </td>
+                        {editable && (
+                            <td>
+                                {editedRadios.includes(radio.id) && (
+                                    <button onClick={() => saveChanges(radio.id)}>Save</button>
+                                )}
+                            </td>
+                        )}
                     </tr>
                 ))}
                 </tbody>

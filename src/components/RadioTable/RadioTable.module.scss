@@ -43,10 +43,12 @@
           }
         }
       }
-    }
 
-    th {
-      padding: var(--spacing-sm) var(--spacing-md);
+      .url {
+        display: flex;
+        align-items: end;
+        justify-content: end;
+      }
     }
 
     thead tr,
@@ -56,7 +58,6 @@
 
     td {
       vertical-align: top;
-      min-height: 3rem;
       padding: var(--spacing-sm) var(--spacing-md);
     }
 
@@ -77,5 +78,17 @@
         }
       }
     }
+  }
+
+  .tableHeader {
+    th {
+      padding: var(--spacing-sm) var(--spacing-md);
+
+      &.actions {
+        display: flex;
+        justify-content: end;
+      }
+    }
+
   }
 }
