@@ -39,6 +39,7 @@ model User {
   id            String    @id @default(cuid())
   email         String    @unique
   emailVerified DateTime?
+  password      String    @default("")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime? @updatedAt
   sessions      Session[]

@@ -6,13 +6,11 @@ import RadioTable from "@/components/RadioTable/RadioTable";
 
 const AdminPanel: React.FC = async () => {
     const session = await auth();
+    console.log(session)
 
     if (!session || !session.user) {
         redirect("/admin/login");
-    }
-
-    if (!session || !session.user) {
-        return null; // Don't render anything if there's no session (redirect will handle it)
+        return null;
     }
 
     const radiosResponse = await fetch(

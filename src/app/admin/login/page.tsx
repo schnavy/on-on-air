@@ -1,7 +1,10 @@
-import {signIn} from "../../../../auth";
+"use client"
+import SignIn from "@/components/auth/sign-in";
 
-const AdminLogin: () => Promise<void> = async () => {
-    await signIn("email", {redirectTo: "/admin"});
+const AdminLogin = () => {
+    return (
+        <SignIn/>
+    )
 };
 
 export default AdminLogin;
