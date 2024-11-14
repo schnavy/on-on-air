@@ -21,3 +21,7 @@ Planned/Possible Fearues:
 <br/>
 
 Developed and initated by <a href="https://davidwahrenburg.de" target="_blank">David Wahrenburg</a>.
+
+[Login to Admin Panel](/admin)
+
+

@@ -1,14 +1,16 @@
-import {signOut} from "../../../auth";
+import {signOut} from '@/auth';
 
-export function SignOut() {
+export default function SignOut() {
     return (
         <form
             action={async () => {
-                "use server";
+                'use server';
                 await signOut();
-            }}
-        >
-            <button type="submit">Ausloggen</button>
+            }}>
+            <button>
+                <div className="hidden md:block">Sign Out</div>
+            </button>
         </form>
+
     );
 }
