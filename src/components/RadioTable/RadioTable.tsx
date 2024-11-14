@@ -10,10 +10,7 @@ interface RadioTableProps {
     editable?: boolean;
 }
 
-const RadioTable: React.FC<RadioTableProps> = ({
-                                                   radios,
-                                                   editable = false,
-                                               }) => {
+const RadioTable: React.FC<RadioTableProps> = ({radios, editable = false}) => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -22,61 +19,52 @@ const RadioTable: React.FC<RadioTableProps> = ({
     const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
     const [editedRadios, setEditedRadios] = useState<number[]>([]);
+    const [localRadios, setLocalRadios] = useState(radios);
 
     const handleSort = (field: SortField) => {
         const newOrder = sortField === field && sortOrder === "asc" ? "desc" : "asc";
-
         const params = new URLSearchParams(Array.from(searchParams.entries()));
         params.set("sortField", field);
         params.set("sortOrder", newOrder);
-
         router.replace(`?${params.toString()}`);
     };
 
     const filteredAndSortedRadios = useMemo(() => {
-        let filteredRadios = radios;
-
+        let filteredRadios = localRadios;
         if (searchQuery) {
-            filteredRadios = radios.filter((radio) => {
+            filteredRadios = localRadios.filter((radio) => {
                 const lowerSearch = searchQuery.toLowerCase();
-                const titleMatch = radio.title.toLowerCase().includes(lowerSearch);
-                const descriptionMatch = radio.description?.toLowerCase().includes(lowerSearch);
-                const locationMatch = radio.location?.toLowerCase().includes(lowerSearch);
-                const tagsMatch = radio.tags.some((tag) =>
-                    tag.title.toLowerCase().includes(lowerSearch)
+                return (
+                    radio.title.toLowerCase().includes(lowerSearch) ||
+                    radio.description?.toLowerCase().includes(lowerSearch) ||
+                    radio.location?.toLowerCase().includes(lowerSearch) ||
+                    radio.tags.some((tag) => tag.title.toLowerCase().includes(lowerSearch)) ||
+                    radio.genres.some((genre) => genre.title.toLowerCase().includes(lowerSearch))
                 );
-                const genresMatch = radio.genres.some((genre) =>
-                    genre.title.toLowerCase().includes(lowerSearch)
-                );
-
-                return titleMatch || descriptionMatch || locationMatch || tagsMatch || genresMatch;
             });
         }
 
         return [...filteredRadios].sort((a, b) => {
             const aValue = a[sortField]?.toString().toLowerCase() || "";
             const bValue = b[sortField]?.toString().toLowerCase() || "";
-
-            if (sortOrder === "asc") {
-                return aValue.localeCompare(bValue);
-            } else {
-                return bValue.localeCompare(aValue);
-            }
+            return sortOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
         });
-    }, [radios, searchQuery, sortField, sortOrder]);
+    }, [localRadios, searchQuery, sortField, sortOrder]);
 
     const handleEdit = (id: number, field: SortField, value: string) => {
         setEditedRadios((prevEditedRadios) =>
             prevEditedRadios.includes(id) ? prevEditedRadios : [...prevEditedRadios, id]
         );
 
-        radios = radios.map((radio) =>
-            radio.id === id ? {...radio, [field]: value} : radio
+        setLocalRadios((prevRadios) =>
+            prevRadios.map((radio) =>
+                radio.id === id ? {...radio, [field]: value} : radio
+            )
         );
     };
 
     const saveChanges = async (id: number) => {
-        const radioToSave = radios.find((radio) => radio.id === id);
+        const radioToSave = localRadios.find((radio) => radio.id === id);
         if (radioToSave) {
             try {
                 const response = await fetch(`/api/radios/${id}`, {
@@ -89,13 +77,15 @@ const RadioTable: React.FC<RadioTableProps> = ({
                     }),
                 });
 
-                if (!response.ok) console.log("Error updating radio:", response.statusText);
+                if (response.ok) {
+                    setEditedRadios((prevEditedRadios) =>
+                        prevEditedRadios.filter((editedId) => editedId !== id)
+                    );
+                } else {
+                    console.error("Error updating radio:", response.statusText);
+                }
             } catch (error) {
                 console.error("Error updating radio:", error);
-            } finally {
-                setEditedRadios((prevEditedRadios) =>
-                    prevEditedRadios.filter((editedId) => editedId !== id)
-                );
             }
         }
     };
@@ -140,11 +130,11 @@ const RadioTable: React.FC<RadioTableProps> = ({
                                         key={genre.id}
                                         id={genre.id.toString()}
                                         className={styles.genreItem}
-                                        // @ts-ignore
+                                        //@ts-ignore --tagBGColor is a CSS variable
                                         style={{"--tagBGColor": genre.color}}
                                     >
-                      {genre.title}
-                    </span>
+                                            {genre.title}
+                                        </span>
                                 ))}
                             </div>
                         </td>
@@ -155,11 +145,11 @@ const RadioTable: React.FC<RadioTableProps> = ({
                                         key={tag.id}
                                         id={tag.id.toString()}
                                         className={styles.tagItem}
-                                        // @ts-ignore
+                                        //@ts-ignore --tagBGColor is a CSS variable
                                         style={{"--tagBGColor": tag.color}}
                                     >
-                      {tag.title}
-                    </span>
+                                            {tag.title}
+                                        </span>
                                 ))}
                             </div>
                         </td>
