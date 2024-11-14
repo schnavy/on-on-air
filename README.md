@@ -20,6 +20,7 @@ In Development mode:
 
 In Production mode:
 
-1. Make start-prod
-2. Make migrate-prod
-3. Make stop-prod
+1. Make build-prod
+2. Make start-prod
+3. Make migrate-prod
+4. Make stop-prod
