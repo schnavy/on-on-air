@@ -5,8 +5,6 @@ import RadioTable from "@/components/RadioTable/RadioTable";
 
 const AdminPanel: React.FC = async () => {
     const session = await auth();
-    console.log("sessssionnnnnnn")
-    console.log(session)
 
     const radiosResponse = await fetch(
         process.env.BASE_URL + "/api/get-radios-with-relations",
