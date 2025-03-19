@@ -1,4 +1,4 @@
-**On. on Air** is a open Index for
+**On(line) on Air** is a open Index for
 _new/ independent/ experimental/ punk/ niche/ nerdy/ experimental/ contemporary_ web radios.
 
 It emerged from a private archive of web radios that I've been listening to. Even though being openly available thought the internet, many of these radios are mostly known in their local surrounding, listened to by peers and friends.
