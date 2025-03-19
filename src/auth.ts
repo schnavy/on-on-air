@@ -1,46 +1,33 @@
-import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
-import {authConfig} from '@/auth.config';
-import {z} from 'zod';
-import prisma from "@/lib/prisma";
-import bcrypt from 'bcryptjs';
-import {PrismaAdapter} from "@auth/prisma-adapter";
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-async function getUser(email: string) {
-    try {
-        return await prisma.user.findUnique({
-            where: {email},
-        })
-    } catch
-        (error) {
-        console.error('Failed to fetch user:', error);
-        throw new Error('Failed to fetch user.');
-    }
-}
+const USERNAME = process.env.AUTH_USERNAME;
+const PASSWORD = process.env.AUTH_PASSWORD;
 
-export const {auth, signIn, signOut, handlers} = NextAuth({
-    ...authConfig,
-    adapter: PrismaAdapter(prisma),
-    session: {
-        strategy: 'jwt',
+export const { auth, signIn, signOut, handlers } = NextAuth({
+  session: { strategy: "jwt" },
+  providers: [
+    CredentialsProvider({
+      async authorize(credentials) {
+        if (
+          credentials?.username === USERNAME &&
+          credentials?.password === PASSWORD
+        ) {
+          return { id: "1", name: USERNAME };
+        }
+        return null;
+      },
+    }),
+  ],
+  pages: {
+    signIn: "/admin/login",
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = nextUrl.pathname.startsWith("/admin");
+      return isOnDashboard ? isLoggedIn : true;
     },
-    providers: [
-        Credentials({
-            async authorize(credentials) {
-                const parsedCredentials = z
-                    .object({email: z.string().email(), password: z.string().min(4)})
-                    .safeParse(credentials);
-
-                if (parsedCredentials.success) {
-                    const {email, password} = parsedCredentials.data;
-                    const user = await getUser(email);
-                    if (!user) return null;
-                    const passwordsMatch = await bcrypt.compare(password, user.password);
-                    if (passwordsMatch) return user;
-                }
-                return null;
-            },
-        }),
-    ],
-    trustHost: true,
+  },
+  trustHost: true,
 });
