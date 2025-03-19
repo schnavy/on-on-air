@@ -1,6 +1,8 @@
 services:
   db:
     image: postgres:13
+    container_name: on-on-air_db
+    restart: always
     volumes:
       - db_data:/var/lib/postgresql/data/
       - ./dump:/dump
@@ -9,10 +11,16 @@ services:
       POSTGRES_PASSWORD: ${DB_PW}
       POSTGRES_DB: on-on-air_db
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - internal_network
 
 volumes:
   db_data:
+
+networks:
+  internal_network:
+    driver: bridge

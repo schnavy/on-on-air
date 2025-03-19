@@ -3,11 +3,21 @@ services:
     build:
       context: .
       target: prod
+    container_name: on-on-air_app
+    restart: always
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: production
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PW}@db:5432/on-on-air_db
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
