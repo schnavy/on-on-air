@@ -19,12 +19,24 @@ RUN npm run build
 # Production stage
 FROM node:18-alpine AS prod
 WORKDIR /app
+
+# Install system dependencies (Fixes Prisma OpenSSL issue)
+RUN apk add --no-cache openssl
+
+# Copy only necessary files to keep the image small
 COPY package*.json ./
 RUN npm install --production
+
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
-COPY prisma ./prisma
-COPY .env .env
+COPY --from=build /app/prisma ./prisma
+
+# Ensure correct environment variables
 ENV NODE_ENV=production
+
+# Expose port
 EXPOSE 3000
-CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma generate && npm start"]
+
+# Run Prisma migrations & generate client before starting app
+CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && npm start"]
+
