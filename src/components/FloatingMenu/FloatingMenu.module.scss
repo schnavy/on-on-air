@@ -5,7 +5,8 @@
   border-radius: var(--border-radius);
   left: 0;
   margin-left: var(--spacing-lg);
-  background-color: var(--background-light);
+  backdrop-filter: blur(4px);
+  background-color: #f5f5f5b1;
   color: var(--foreground);
   height: var(--spacing-xl);
   border: 1px groove var(--muted-color);
@@ -17,6 +18,9 @@
   align-items: center;
   transition: opacity 200ms ease;
 
+  div {
+    white-space: nowrap;
+  }
   a {
     color: var(--foreground);
   }
@@ -72,5 +76,18 @@
 
   @media (max-width: 900px) {
     left: 0 !important;
+    bottom: var(--spacing-lg);
+    margin-left: var(--spacing-lg);
+    height: var(--spacing-lg);
+    padding: var(--spacing-lg);
+
+    .searchContainer,
+    .titleText {
+      display: none;
+    }
+
+    .circle {
+      margin-left: 0;
+    }
   }
 }

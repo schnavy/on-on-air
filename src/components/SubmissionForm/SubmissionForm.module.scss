@@ -3,7 +3,7 @@
   bottom: var(--spacing-xl);
   border-radius: var(--border-radius);
   right: 10vw;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   background-color: rgba(187, 255, 70, 0.7);
   border: 1px groove var(--muted-color);
   color: black;
@@ -35,5 +35,6 @@
 
   @media (max-width: 900px) {
     right: 0 !important;
+    bottom: var(--spacing-lg);
   }
 }

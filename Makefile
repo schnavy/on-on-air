@@ -93,5 +93,5 @@ db-dump:
 # Database Import
 .PHONY: db-import
 db-import:
-	docker exec -i $(shell docker ps -qf "name=db") psql -U $(DB_USER) -d on-on-air_db -f $(DUMP_FILE)
+	docker exec -i $(shell docker ps -qf "name=on-on-air-db-1") psql -U $(DB_USER) -d on-on-air_db -f $(DUMP_FILE)
 	@echo "Database import from $(DUMP_FILE) complete"

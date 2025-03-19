@@ -23,8 +23,8 @@ const TableHeader: React.FC<TableHeaderProps> = ({sortField, sortOrder, handleSo
             <th className={`clickable ${styles.location}`} onClick={() => handleSort("location")}>
                 Location {renderArrow("location")}
             </th>
-            <th className={styles.genres}>Genres</th>
-            <th className={styles.tags}>Tags</th>
+            {/* <th className={styles.genres}>Genres</th>*/}
+            <th className={styles.tags}>Tags (Generated Placeholders)</th>
             <th className={styles.actions}>
                 Visit
             </th>

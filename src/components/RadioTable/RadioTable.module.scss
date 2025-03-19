@@ -36,8 +36,8 @@
             &:hover {
               color: var(--background);
               background-color: rgba(
-                              var(--tagBGColor),
-                              1
+                var(--tagBGColor),
+                1
               ); /* 100% opacity on hover */
             }
           }
@@ -66,6 +66,9 @@
       thead,
       tbody {
         .genres {
+          display: none;
+        }
+        .radioURL {
           display: none;
         }
       }
