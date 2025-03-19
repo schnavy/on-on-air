@@ -186,7 +186,7 @@ const RadioTable: React.FC<RadioTableProps> = ({
                     rel="noreferrer"
                     aria-label={`Visit ${radio.title}`}
                   >
-                    <span className={styles.radioURL}>{cleanURL(radio.url)}</span>↗
+                    <span className={styles.radioURL}>{cleanURL(radio.url)}</span>&nbsp;↗
                   </a>
                 )}
               </td>

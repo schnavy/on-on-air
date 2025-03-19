@@ -68,5 +68,8 @@ export const sortRadios = (
 };
 
 export function cleanURL(url: string) {
-  return url.replace(/(^\w+:|^)\/\//, "").replace(/\/$/, "");
+  return url
+    .replace(/(^\w+:|^)\/\//, "")
+    .replace(/\/$/, "")
+    .replace("www.", "");
 }
