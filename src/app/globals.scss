@@ -2,9 +2,9 @@
   --background: #ffffff;
   --background-light: #f5f5f5;
   --background-gradient: linear-gradient(
-                  0deg,
-                  rgba(247, 238, 226, 0.4),
-                  rgba(236, 187, 187, 0.2)
+    0deg,
+    rgba(247, 238, 226, 0.4),
+    rgba(236, 187, 187, 0.2)
   );
   --foreground: #171717;
   --foreground-light: #141415;
@@ -34,8 +34,9 @@
 
 @font-face {
   font-family: "JB Mono";
-  src: url("/fonts/JetbrainsMono-Regular.woff2") format("woff2"),
-  url("/fonts/JetbrainsMono-Regular.woff") format("woff");
+  src:
+    url("/fonts/JetbrainsMono-Regular.woff2") format("woff2"),
+    url("/fonts/JetbrainsMono-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -43,8 +44,9 @@
 
 @font-face {
   font-family: "JB Mono";
-  src: url("/fonts/JetbrainsMono-Italic.woff2") format("woff2"),
-  url("/fonts/JetbrainsMono-Italic.woff") format("woff");
+  src:
+    url("/fonts/JetbrainsMono-Italic.woff2") format("woff2"),
+    url("/fonts/JetbrainsMono-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -52,8 +54,9 @@
 
 @font-face {
   font-family: "JB Mono";
-  src: url("/fonts/JetbrainsMono-MediumItalic.woff2") format("woff2"),
-  url("/fonts/JetbrainsMono-MediumItalic.woff") format("woff");
+  src:
+    url("/fonts/JetbrainsMono-MediumItalic.woff2") format("woff2"),
+    url("/fonts/JetbrainsMono-MediumItalic.woff") format("woff");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -61,8 +64,9 @@
 
 @font-face {
   font-family: "JB Mono";
-  src: url("/fonts/JetbrainsMono-Medium.woff2") format("woff2"),
-  url("/fonts/JetbrainsMono-Medium.woff") format("woff");
+  src:
+    url("/fonts/JetbrainsMono-Medium.woff2") format("woff2"),
+    url("/fonts/JetbrainsMono-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -127,4 +131,10 @@ ul {
 
 .loading {
   opacity: 0;
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 85%;
+  }
 }

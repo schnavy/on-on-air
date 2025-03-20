@@ -78,7 +78,7 @@ const FloatingMenu = () => {
           <span className={styles.circle}></span>
         </Link>
       </div>
-      <div>
+      <div className={styles.indexLink}>
         <Link href="/" className={styles.link}>
           Index
         </Link>
