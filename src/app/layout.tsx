@@ -9,17 +9,17 @@ export const metadata: Metadata = {
     description: "On(line) on Air is a open Index for new/ independent/ experimental/ punk/ niche/ nerdy/ experimental/ contemporary web radios.",
     openGraph: {
         type: "website",
-        url: "https://on-on-air.davidwahrenburg.de/",
+        url: process.env.BASE_URL,
         title: "On on Air",
         description: "On(line) on Air is a open Index for new/ independent/ experimental/ punk/ niche/ nerdy/ experimental/ contemporary web radios.",
-        images: ["/img/thumb.jpg"],
+        images: [process.env.BASE_URL + "/img/thumb.jpg"],
     },
     twitter: {
         card: "summary_large_image",
         title: "On on Air",
         description: "On(line) on Air is a open Index for new/ independent/ experimental/ punk/ niche/ nerdy/ experimental/ contemporary web radios.",
-        images: ["/img/thumb.jpg"],
-        site: "https://on-on-air.davidwahrenburg.de/",
+        images: [process.env.BASE_URL + "/img/thumb.jpg"],
+        site: process.env.BASE_URL,
     }
 }
 
