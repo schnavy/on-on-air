@@ -8,8 +8,12 @@
   );
   --foreground: #171717;
   --foreground-light: #141415;
+  --transp-foreground: rgba(237, 237, 237, 0.4);
+
   --muted-color: rgba(23, 23, 23, 0.2);
   --muted-text-color: rgba(23, 23, 23, 0.4);
+
+  --link-color: blue;
 
   --border-radius: 0.3rem;
   --spacing-xs: 0.4rem;
@@ -27,8 +31,12 @@
     --background-gradient: var(--background);
     --foreground: #ededed;
     --foreground-light: #eaeaea;
+    --transp-foreground: rgba(23, 23, 23, 0.4);
+
     --muted-color: rgba(237, 237, 237, 0.4);
     --muted-text-color: rgba(237, 237, 237, 0.5);
+
+    --link-color: rgb(33, 126, 255);
   }
 }
 
@@ -102,7 +110,7 @@ body {
 }
 
 a {
-  color: blue;
+  color: var(--link-color);
   text-decoration: none;
 
   &:hover {
